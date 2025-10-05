@@ -1,0 +1,80 @@
+:root{
+  --header-h:64px; --container:1200px;
+  --text:#000000; --white:#fff;
+  --c-kv:#ffb7b7; --c-over:#ffdba0; --c-plan:#d2efa7;
+  --c-design:#9ae8b1; --c-proc:#9fc9e3; --c-video:#94b0e5;
+  --c-team:#e7c0f9; --c-footer:#fdb5e3;
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100%; margin:0; font-family:system-ui,Segoe UI,Apple SD Gothic Neo,Pretendard,sans-serif; color:var(--text); background:#f7f7f8 }
+
+
+.header{
+  position:fixed; inset:0 0 auto 0; height:var(--header-h);
+  display:flex; align-items:center; gap:16px;
+  padding:0 20px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+
+
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+
+  z-index: 1000;
+  pointer-events: none; 
+}
+
+.logo{ font-weight:800; letter-spacing:.2px }
+
+nav{ flex:1; 
+    display:flex; 
+    align-items:center; 
+    gap:16px; 
+    justify-content:center; 
+    flex-wrap:wrap;
+    pointer-events: auto;
+}
+
+.nav__link{
+  padding:10px 12px; border-radius:999px; text-decoration:none; color:#111;
+  font-weight:700; font-size:14px;
+}
+.nav__link[aria-current="page"], .nav__link:hover{ background:#111; color:#fff }
+
+/* 진행바 */
+.progress{ position:fixed; left:0; top:0; height:2px; width:0; background:#111; z-index:1100 }
+
+/* 섹션 공통 */
+main{ scroll-behavior:smooth }
+section{
+  min-height:100svh;
+  padding: calc(var(--header-h) + 24px) 16px 48px;
+  display:grid; place-items:center; text-align:center;
+}
+.section__inner{ width:min(92vw, var(--container)); }
+h1,h2{ margin:0 0 12px 0 }
+.label{ font-size:14px; opacity:.7; margin-bottom:.5rem }
+
+/* 색상 매핑 */
+/* ✨ 섹션별 높이 다르게 지정 */
+#key-visual { background: var(--c-kv); min-height: 100vh; }   
+#overview  { background: var(--c-over); min-height: 80vh; }   
+#planning  { background: var(--c-plan); min-height: 120vh; }  
+#design    { background: var(--c-design); min-height: 90vh; } 
+#process   { background: var(--c-proc); min-height: 130vh; }  
+#video     { background: var(--c-video); min-height: 100vh; } 
+#team      { background: var(--c-team); min-height: 70vh; }   
+#footer    { background: var(--c-footer); min-height: 30vh; } 
+
+/* 반응형 */
+@media (max-width:720px){
+  .header{ gap:10px }
+  nav{ gap:8px }
+  .nav__link{ font-size:13px; padding:8px 10px }
+}
+
+/* 모션 최소화 환경 */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto }
+}
