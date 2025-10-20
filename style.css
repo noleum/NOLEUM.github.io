@@ -9,7 +9,7 @@
 html,body{
   height:100%; margin:0;
   font-family:system-ui, Segoe UI, Apple SD Gothic Neo, Pretendard, sans-serif;
-  color:var(--text); background:#f7f7f8;
+  color:var(--text); background:#ffffff;
   overflow-x:hidden;
 }
 
@@ -29,7 +29,7 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 
 /* ===== 키비주얼 1: 3분할 + 중앙 이미지 ===== */
 #key-visual{
-  position:relative; padding:0; width:100%; height:100vh; overflow:hidden; background:#f2f2f2;
+  position:relative; padding:0; margin-bottom: 30vh; width:100%; height:100vh; overflow:hidden; background:#f2f2f2;
 }
 #key-visual .kv-bg{
   position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
@@ -43,13 +43,13 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 .kv-col:nth-child(3){ background:rgba(125,125,125,.5) }
 
 /* ===== 키비주얼 2(간단 트립틱) ===== */
-.kv-triptych{ width:100%; height:100vh; }
+.kv-triptych{ width:100%; height:100vh; margin-bottom: 50vh;}
 .kv-triptych .kv-row{ height:100%; }
 
 /* OVERVIEW */
 #overview{
   display:flex; justify-content:flex-start; align-items:flex-start; text-align:left;
-  padding-top:30vh; padding-left:5vw; padding-bottom:0; background:var(--c-over);
+ padding-left:5vw; padding-bottom:0; background:var(--c-over);
 }
 .overview_inner{ width:100%; max-width:1000px; margin-bottom:10vh; }
 .overview_inner h1{ font-size:30px; margin:0 }
@@ -64,6 +64,7 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 
 /* PLANNING – 카드/도트/CTA */
 #planning{}
+.planning_text {  margin-left: 5vw; margin-bottom: 7vh;}
 .planning_inner{ margin-top:30vh; margin-left:5vw; margin-bottom:10vh; width:100%; max-width:1000px }
 .planning_inner h1{ font-size:30px; margin:0 }
 .planning_inner p{ margin-top:4vh; font-size:12px }
@@ -92,6 +93,214 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 .cta-line{ height:14px; border-radius:999px; background:#bfbfbf }
 .cta-line--lg{ width:min(640px, 80%) } .cta-line--sm{ width:min(420px,60%); height:8px; opacity:.8 }
 
+:root{
+  --bg-accent: url("img/logo2.png");
+  --card-bg: #f4f4f4;
+  --card-bd: #e5e5e7;
+  --text: #222;
+  --muted: #8b8b90;
+  --accent: #ff4a3a;
+}
+
+:root{
+  --bg-accent: url("img/logo2.png"); /* 왼쪽 배경 이미지 */
+  --card-bg: #f4f4f4;
+  --card-bd: #e5e5e7;
+  --text: #222;
+  --muted: #8b8b90;
+  --accent: #ff4a3a;
+
+  /* 카드 공통 사이즈/여백 변수 */
+  --review-w: clamp(360px, 60vw, 1223px);
+  --review-min-h: 200px;
+  --review-radius: 35px;
+  --review-pad: 30px 0 30px 24px; /* top right bottom left (right=0) */
+  --avatar-size: 140px;
+  --avatar-shift: -64px; /* 왼쪽으로 더 잘리게 */
+}
+
+/* ── 섹션(배경/패딩) ───────────────────────── */
+.reviews{
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+
+  /* 섹션 안팎 여백 */
+  padding: 80px 16px;
+
+  /* 배경 이미지 설정(원하면 커스텀) */
+  --bg-left: 0;
+  --bg-width: 50%;
+  --bg-top: 0;
+  --bg-bottom: 0;
+}
+/* 왼쪽 배경 이미지 (contain: 전체 보이게) */
+.reviews::before{
+  content: "";
+  position: absolute;
+  left: var(--bg-left);
+  top: var(--bg-top);
+  bottom: var(--bg-bottom);
+  width: var(--bg-width);
+  background-image: var(--bg-accent);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center left;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── 내용 컨테이너(오른쪽으로 붙이기 + 위아래 여백) ── */
+.reviews__inner{
+  position: relative; z-index: 1;
+  max-width: 1305px;
+
+  /* 오른쪽 정렬 */
+  margin-left: auto; margin-right: 0;
+
+  display: grid;
+  gap: 28px;
+  justify-items: end;   /* 카드들을 기본 오른쪽 정렬 */
+  align-items: center;
+
+  /* 내부 상/하 여백 (필요시 조절) */
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* ── 카드 본체 ────────────────────────────── */
+.review{
+  position: relative;
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  box-sizing: border-box;
+
+  min-height: var(--review-min-h);
+  width: min(100%, var(--review-w));
+  padding: var(--review-pad);
+  border-radius: var(--review-radius);
+  background: var(--card-bg);
+  border: 1px solid var(--card-bd);
+
+  /* 기본 오른쪽 정렬 */
+  justify-self: end;
+  align-self: center;
+}
+
+/* 아바타(왼쪽으로 더 잘려 보이게) */
+.review__avatar{
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-left: var(--avatar-shift); /* 음수로 왼쪽으로 빼서 ‘잘려 보이게’ */
+  background:#bbb;
+}
+
+/* 텍스트 */
+.review__body{ padding-left: 12px; padding-right: 0; color: var(--text); }
+.review__head{ display:flex; gap:10px; align-items:center; margin-bottom:8px; font-size:15px; }
+.review__name{ font-weight: 700; }
+.review__meta{ color: var(--muted); font-size: 13px; }
+.review__text{ margin:0; line-height:1.75; font-size:16px; padding-top: 10px; }
+.hl{ color: var(--accent); font-weight:700; }
+
+/* ── 배치 변형(둘 다 오른쪽 정렬 유지, 홀수만 살짝 왼쪽으로 내밀기) ── */
+.review--right{
+  margin-right: 6vw;     /* 기본 오른쪽 여백 */
+}
+.review--left{
+  margin-right: 6vw;     /* 기본 오른쪽 여백 동일 */
+  transform: translateX(-3vw); /* 살짝 왼쪽으로 ‘내보내는’ 연출 */
+}
+
+/* ── 반응형 ─────────────────────────────── */
+@media (max-width: 640px){
+  :root{
+    --avatar-size: 100px;
+    --avatar-shift: -46px;
+    --review-min-h: 180px;
+  }
+  .review{
+    grid-template-columns: 72px 1fr;
+    padding: 18px 0 18px 18px; /* right=0 유지 */
+    width: 100%;
+  }
+  .review--left{ transform: translateX(-2vw); }
+}
+
+
+
+/* 내용 컨테이너 */
+.reviews__inner{
+  position: relative;
+  z-index: 1;
+  max-width: 1305px;
+
+  /* 🔹 오른쪽에 딱 붙이기 */
+  margin-left: auto;
+  margin-right: 0;
+
+  display: grid;
+  gap: 28px;
+  justify-items: end;     /* 전체를 오른쪽 정렬 */
+  align-items: center;    /* 세로 중앙 정렬 */
+
+  /* 🔹 위아래 여백 추가 */
+  padding-top: 100px;     /* 위쪽 공간 */
+  padding-bottom: 100px;  /* 아래쪽 공간 */
+
+  border: solid black;
+}
+
+.review:nth-child(odd){
+  transform: translateX(-5%);  /* ✅ 홀수 카드만 살짝 왼쪽으로 */
+}
+
+/* 필요시 수동 강제 */
+.review--right { justify-self:end; margin-right:6vw; }
+.review--left  { justify-self:end; transform:translateX(-5%); }
+
+/* 아바타 */
+.review__avatar{
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-left: -70px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  background:#bbb;
+}
+
+/* 텍스트 영역 */
+.review__body{ padding-left: 12px; padding-right: 0; color: var(--text); }
+.review__head{ display:flex; gap:10px; align-items:center; margin-bottom:8px; font-size:14px; }
+.review__name{ font-weight: 700; }
+.review__meta{ color: var(--muted); font-size: 12px; }
+.review__text{ margin:0; line-height:1.6; font-size:14px; padding-top:2vh; }
+.hl{ color: var(--accent); font-weight:700; }
+
+/* 모바일 보정 */
+@media (max-width: 640px){
+  .reviews__inner{ justify-items: center; }
+  .review{
+    grid-template-columns: 72px 1fr;
+    padding: 14px 0 14px 18px;
+    width: 100%;
+    transform: none;           /* 모바일에서는 정렬 변형 제거 */
+  }
+  .review__avatar{ width:72px; height:72px; margin-left:-36px; }
+}
+
+
+
+
+
 /* DESIGN */
 .design_inner{ margin-top:30vh; margin-left:5vw; margin-bottom:10vh; width:100%; max-width:1000px }
 .design_inner2{ min-width:100vw; min-height:100vh; background:#e4e4e4 }
@@ -106,24 +315,25 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 .era-sub{ writing-mode:vertical-rl; text-orientation:upright; font-size:12px; color:#666; letter-spacing:.1em }
 
 /* Typography 카드 */
+
 .font-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; width:min(1040px,92vw); margin:24px auto }
 .font-card{ position:relative; border-radius:16px; padding:20px; min-height:180px; display:grid; grid-template-rows:auto 1fr auto }
 .theme-1{ background:#8f8f8f } .theme-2{ background:#d2d2d2 } .theme-3{ background:#555 }
 .font-card .label{ font-weight:800; color:#fff; font-size:36px; line-height:1; margin-bottom:14px }
 .font-card .thumb{ background:rgba(255,255,255,.25); border-radius:6px; height:64px; margin-bottom:18px }
 .font-card .cta{ justify-self:end; width:84px; height:28px; border-radius:4px; background:rgba(255,255,255,.35) }
-.design_inner3{ min-width:100vw; min-height:100vh; background:#e4e4e4; margin-top:30vh }
+.design_inner3{ min-width:100vw; min-height:100vh; background:#e4e4e4; margin-top:30vh; margin-bottom: 40vh;}
 
 /* VIDEO */
-#video{ position:relative; display:flex; flex-direction:column; justify-content:flex-start; align-items:center }
-.video_text{ width:100%; padding-top:40vh; padding-left:5vw; text-align:left; z-index:2 }
+#video{ position:relative; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; background-color: white;}
+.video_text{ width:100%; padding-left:5vw; text-align:left; z-index:2 }
 .video_inner{ width:90vw; height:90vh; background:#e4e4e4; margin-top:3vh }
 
 /* TEAM 슬라이더 */
 #team{
   position:relative; min-height:100vh;
   padding:calc(var(--header-h) + 40vh) 0 14vh;
-  background:#f5f5f6; display:flex; align-items:center; justify-content:flex-start; flex-direction:column;
+  background:#ffffff; display:flex; align-items:center; justify-content:flex-start; flex-direction:column;
   overflow:visible; scroll-margin-top:var(--header-h);
 }
 .slider{
