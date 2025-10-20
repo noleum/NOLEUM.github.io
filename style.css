@@ -180,7 +180,8 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   display: flex;
   align-items: flex-end;              /* 텍스트를 아래쪽에 맞춤 */
   justify-content: flex-start;        /* 왼쪽 정렬 */
-  height: 140px;                      /* 전체 높이 */
+  height: 140px;    
+  margin-top: 50vh;                  /* 전체 높이 */
   padding: 24px 5vw;                  /* 좌우 여백 */
   font-family: 'Pretendard', sans-serif;
 }
