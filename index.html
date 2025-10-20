@@ -10,7 +10,6 @@
 
   <div class="progress" id="progress"></div>
 
-
   <header class="header" role="banner">
     <div class="logo" aria-label="사이트 로고">로고</div>
     <nav aria-label="섹션 내비게이션">
@@ -19,216 +18,222 @@
       <a class="nav__link" href="#design">DESIGN</a>
       <a class="nav__link" href="#process">PROCESS</a>
       <a class="nav__link" href="#video">VIDEO</a>
+      <a class="nav__link" href="#team">TEAM</a>
     </nav>
   </header>
 
-<section id="key-visual">
-  <img class="kv-bg" src="img/logo1.png" alt="배경이미지" />
-  <div class="kv-row">
-    <div class="kv-col">KV 1</div>
-    <div class="kv-col">KV 2</div>
-    <div class="kv-col">KV 3</div>
-  </div>
-</section>
+  <main>
+    <!-- 키비주얼 1 -->
+    <section id="key-visual">
+      <img class="kv-bg" src="img/logo1.png" alt="배경이미지" />
+      <div class="kv-row">
+        <div class="kv-col">KV 1</div>
+        <div class="kv-col">KV 2</div>
+        <div class="kv-col">KV 3</div>
+      </div>
+    </section>
 
 
 
+    <!-- OVERVIEW -->
     <section id="overview" data-section>
       <div class="overview_inner">
         <h1>박물관의 전통놀이 오브젝트를 <br>
         인터랙티브 미디어월로 <br>
         체험할 수 있도록 기획되었습니다.</h1>
-        <p>관람객이 박물관 오브젝트를 선택해 조선시대·근현대로 이동, 전통놀이를 체험하고 <br>
+        <p>관람객이 박물관 오브젝트를 선택해 조선시대·근현대로 이동, 전통놀이를 체험하고<br>
           다시 돌아오며 ‘놀이로 시대를 연결’하는 참여형 인터랙티브 미디어월 콘텐츠</p>
       </div>
     </section>
 
-    <section id="key-visual">
-  <div class="kv-row">
-    <div class="kv-col">현대</div>
-    <div class="kv-col">근현대</div>
-    <div class="kv-col">조선시대</div>
-  </div>
-</section>  
+    <!-- 키비주얼 2 (중복 id 피해서 class 사용) -->
+    <section class="kv-triptych">
+      <div class="kv-row">
+        <div class="kv-col">현대</div>
+        <div class="kv-col">근현대</div>
+        <div class="kv-col">조선시대</div>
+      </div>
+    </section>
 
+    <!-- PLANNING -->
     <section id="planning">
       <div class="planning_inner">
         <h1>사라져가는 전통놀이의 디지털 재해석, <br>
         흥으로 잇는 세대 간 연결</h1>
-        <p>관람객이 박물관 오브젝트를 선택해 조선시대·근현대로 이동, 전통놀이를 체험하고 <br>
+        <p>관람객이 박물관 오브젝트를 선택해 조선시대·근현대로 이동, 전통놀이를 체험하고<br>
           다시 돌아오며 ‘놀이로 시대를 연결’하는 참여형 인터랙티브 미디어월 콘텐츠</p>
       </div>
 
       <div class="overview_wrap">
-        <!-- 왼쪽 블록 -->
         <div class="kv-card">
           <div class="kv-chip kv-chip--left">키워드같은거</div>
-          <div class="kv-panel-shape">
-            <!-- 내용 넣기: 이미지/문장/리스트 등 -->
+          <div class="kv-panel-shape"></div>
+        </div>
+
+        <div class="kv-card">
+          <div class="kv-chip kv-chip--right">키워드같은거</div>
+          <div class="kv-panel-shape"></div>
+        </div>
+      </div>
+
+      <div class="planning_inner2">
+        <h2>그래서 하려는거</h2>
+
+        <div class="steps">
+          <article class="step-card">
+            <div class="step-no step-no--or">01</div>
+            <div class="ph ph-lg"></div>
+            <div class="ph ph-sm"></div>
+            <div class="ph-line"></div>
+            <div class="ph-line"></div>
+            <div class="ph-line"></div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-no step-no--nv">02</div>
+            <div class="ph ph-lg"></div>
+            <div class="ph ph-sm"></div>
+            <div class="ph-line"></div>
+            <div class="ph-line"></div>
+          </article>
+
+          <article class="step-card">
+            <div class="step-no step-no--or">03</div>
+            <div class="ph ph-lg"></div>
+            <div class="ph ph-sm"></div>
+            <div class="ph-line"></div>
+            <div class="ph-line"></div>
+          </article>
+        </div>
+
+        <!-- (PLANNING용) 세로 점 인디케이터 -->
+        <div class="dots dots--planning">
+          <span class="dot dot--0"></span>
+          <span class="dot dot--1"></span>
+          <span class="dot dot--2"></span>
+          <span class="dot dot--3"></span>
+        </div>
+
+        <div class="cta-box">
+          <button class="cta-pill"></button>
+          <div class="cta-lines">
+            <div class="cta-line cta-line--lg"></div>
+            <div class="cta-line cta-line--sm"></div>
           </div>
         </div>
-
-      <!-- 오른쪽 블록 -->
-      <div class="kv-card">
-        <div class="kv-chip kv-chip--right">키워드같은거</div>
-        <div class="kv-panel-shape">
-          <!-- 내용 넣기 -->
-        </div>
       </div>
-    </div>
+    </section>
 
-  <div class="planning_inner2">
-    <h2>그래서 하려는거</h2>
-
-    <!-- 3단 카드 -->
-    <div class="steps">
-      <article class="step-card">
-        <div class="step-no step-no--or">01</div>
-        <div class="ph ph-lg"></div>
-        <div class="ph ph-sm"></div>
-        <div class="ph-line"></div>
-        <div class="ph-line"></div>
-        <div class="ph-line"></div>
-      </article>
-
-      <article class="step-card">
-        <div class="step-no step-no--nv">02</div>
-        <div class="ph ph-lg"></div>
-        <div class="ph ph-sm"></div>
-        <div class="ph-line"></div>
-        <div class="ph-line"></div>
-      </article>
-
-      <article class="step-card">
-        <div class="step-no step-no--or">03</div>
-        <div class="ph ph-lg"></div>
-        <div class="ph ph-sm"></div>
-        <div class="ph-line"></div>
-        <div class="ph-line"></div>
-      </article>
-    </div>
-
-    <!-- 세로 점 인디케이터 -->
-    <div class="dots">
-      <span class="dot dot--0"></span>
-      <span class="dot dot--1"></span>
-      <span class="dot dot--2"></span>
-      <span class="dot dot--3"></span>
-    </div>
-
-    <!-- 하단 라운드 박스 + 버튼 + 라인 -->
-    <div class="cta-box">
-      <button class="cta-pill"></button>
-      <div class="cta-lines">
-        <div class="cta-line cta-line--lg"></div>
-        <div class="cta-line cta-line--sm"></div>
-      </div>
-  </div>
-</section>
-
-
+    <!-- DESIGN -->
     <section id="design" data-section>
-      <div class="design_inner">
-        <h2>DESIGN</h2>
+      <div class="design_inner"><h2>DESIGN</h2></div>
+      <div class="design_inner2"><h1>스케치→조선→근현대→현대</h1></div>
+      <div class="contemporary_inner"><h2>CONTEMPORARY</h2></div>
+
+      <!-- Era 배너들: class 사용 -->
+      <section class="era-banner" aria-label="조선 배너">
+        <div class="era-col era-col--light">
+          <div class="era-left-text">조선시대 대문입니다<br>조선시대 대문입니다</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+        <div class="era-col era-col--light era-center">
+          <div class="era-title">朝鮮</div>
+          <div class="era-sub">전통</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+      </section>
+
+      <div class="contemporary_inner"><h2>CONTEMPORARY</h2></div>
+
+      <section class="era-banner" aria-label="조선 배너">
+        <div class="era-col era-col--light">
+          <div class="era-left-text">조선시대 대문입니다<br>조선시대 대문입니다</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+        <div class="era-col era-col--light era-center">
+          <div class="era-title">朝鮮</div>
+          <div class="era-sub">전통</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+      </section>
+
+      <div class="contemporary_inner"><h2>CONTEMPORARY</h2></div>
+
+      <section class="era-banner" aria-label="조선 배너">
+        <div class="era-col era-col--light">
+          <div class="era-left-text">조선시대 대문입니다<br>조선시대 대문입니다</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+        <div class="era-col era-col--light era-center">
+          <div class="era-title">朝鮮</div>
+          <div class="era-sub">전통</div>
+        </div>
+        <div class="era-col era-col--dark"></div>
+      </section>
+
+      <div class="design_inner"><h2>TYPOGRAPHY</h2></div>
+      <div class="font-cards">
+        <article class="font-card theme-1">
+          <div class="label">가</div>
+          <div class="thumb"></div>
+          <div class="cta"></div>
+        </article>
+        <article class="font-card theme-2">
+          <div class="label">가</div>
+          <div class="thumb"></div>
+          <div class="cta"></div>
+        </article>
+        <article class="font-card theme-3">
+          <div class="label">Aa</div>
+          <div class="thumb"></div>
+          <div class="cta"></div>
+        </article>
       </div>
 
-      <div class="design_inner2">
-        <h1>스케치→조선→근현대→현대</h1>
-      </div>
-
-      <div class="contemporary_inner">
-        <h2>CONTEMPORARY</h2>
-      </div>
-
-          <section id="era-banner" aria-label="조선 배너">
-  <div class="era-col era-col--light">
-    <div class="era-left-text">
-      조선시대 대문입니다<br />
-      조선시대 대문입니다
-    </div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-
-  <div class="era-col era-col--light era-center">
-    <div class="era-title">朝鮮</div>
-    <div class="era-sub">전통</div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-</section>
-
-      <div class="contemporary_inner">
-        <h2>CONTEMPORARY</h2>
-      </div>
-
-          <section id="era-banner" aria-label="조선 배너">
-  <div class="era-col era-col--light">
-    <div class="era-left-text">
-      조선시대 대문입니다<br />
-      조선시대 대문입니다
-    </div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-
-  <div class="era-col era-col--light era-center">
-    <div class="era-title">朝鮮</div>
-    <div class="era-sub">전통</div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-</section>
-
-      <div class="contemporary_inner">
-        <h2>CONTEMPORARY</h2>
-      </div>
-
-          <section id="era-banner" aria-label="조선 배너">
-  <div class="era-col era-col--light">
-    <div class="era-left-text">
-      조선시대 대문입니다<br />
-      조선시대 대문입니다
-    </div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-
-  <div class="era-col era-col--light era-center">
-    <div class="era-title">朝鮮</div>
-    <div class="era-sub">전통</div>
-  </div>
-
-  <div class="era-col era-col--dark"></div>
-</section>
-
+      <div class="design_inner3"></div>
     </section>
 
-    <section id="process" data-section>
-      <div class="section__inner">
-        <h2>PROCESS</h2>
-      </div>
-    </section>
-
-
-
+    <!-- VIDEO -->
     <section id="video" data-section>
-      <div class="section__inner">
-        <h2>VIDEO</h2>
-      </div>
+      <div class="video_text"><h1>VIDEO</h1></div>
+      <div class="video_inner"></div>
     </section>
 
-    <section id="team" data-section>
-      <div class="section__inner">
-        <h2>팀 소개</h2>
-      </div>
-    </section>
+<!-- TEAM 슬라이더 -->
+<section id="team" aria-label="팀 소개">
+  <div class="slider">
+    <button class="nav prev" aria-label="이전 카드">❮</button>
 
-    <section id="footer" data-section aria-labelledby="ft">
-      <div class="section__inner">
-        <h2 id="ft">푸터</h2>
-      </div>
-    </section>
+    <div class="stage">
+      <div class="ghost g1"></div>
+      <div class="ghost g2"></div>
+      <div class="ghost g3"></div>
+
+      <article class="card" aria-live="polite">
+        <div class="card-inner">
+          <h3 class="name">이태형</h3>
+          <p class="role">PROGRAMMER</p>
+          <a class="mail" href="mailto:leetaehyung@naver.com">lee@ex.com</a>
+        </div>
+      </article>
+    </div>
+
+    <button class="nav next" aria-label="다음 카드">❯</button>
+
+    <!-- JS가 채울 자리 (비워둠) -->
+    <div class="dots" role="tablist" aria-label="슬라이드 위치"></div>
+  </div>
+</section>
+
+<section id="footer" data-section aria-labelledby="ft">
+  <footer class="footer">
+    <div class="footer-left">
+      <h2 class="footer-logo">Logo</h2>
+      <p class="footer-copy">© 2025 NOL:EUM. All rights reserved</p>
+    </div>
+  </footer>
+</section>
+
   </main>
 
   <script src="script.js" defer></script>
