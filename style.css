@@ -104,8 +104,8 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 
 :root{
   --bg-accent: url("img/logo2.png"); /* 왼쪽 배경 이미지 */
-  --card-bg: #f4f4f4;
-  --card-bd: #e5e5e7;
+  --card-bg: #ffffff;
+  --card-bd: #CBAE59;
   --text: #222;
   --muted: #8b8b90;
   --accent: #ff4a3a;
@@ -187,6 +187,7 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   /* 기본 오른쪽 정렬 */
   justify-self: end;
   align-self: center;
+  
 }
 
 /* 아바타(왼쪽으로 더 잘려 보이게) */
@@ -199,6 +200,7 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   display: block;
   margin-left: var(--avatar-shift); /* 음수로 왼쪽으로 빼서 ‘잘려 보이게’ */
   background:#bbb;
+  
 }
 
 /* 텍스트 */
@@ -267,6 +269,7 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 
 /* 아바타 */
 .review__avatar{
+  background: transparent;
   width: 140px; height: 140px;
   border-radius: 50%;
   object-fit: cover;
@@ -274,7 +277,6 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   display: block;
   margin-left: -70px;
   box-shadow: 0 1px 0 rgba(0,0,0,.08);
-  background:#bbb;
 }
 
 /* 텍스트 영역 */
