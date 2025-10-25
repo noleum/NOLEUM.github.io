@@ -24,43 +24,177 @@ html,body{
 }
 .logo{ font-weight:800; letter-spacing:.2px }
 nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; flex-wrap:wrap; pointer-events:auto; }
-.nav__link{ padding:10px 12px; border-radius:999px; text-decoration:none; color:#111; font-weight:700; font-size:14px; }
+.nav__link{ padding:10px 12px; border-radius:999px; text-decoration:none; color:#ffffff; font-weight:700; font-size:14px; }
 .nav__link[aria-current="page"], .nav__link:hover{ background:#111; color:#fff }
 
-/* ===== 키비주얼 1: 3분할 + 중앙 이미지 ===== */
-#key-visual{
-  position:relative; padding:0; margin-bottom: 30vh; width:100%; height:100vh; overflow:hidden; background:#f2f2f2;
+#key-visual {
+  position: relative;
+  width: 100%;
+  /* height:auto면 img의 높이를 그대로 따라감 */
+  margin-bottom: 30vh;
+  overflow: hidden;
+  background: #ffffff;
 }
-#key-visual .kv-bg{
-  position:absolute; left:50%; top:50%; transform:translate(-50%, -50%);
-  width:auto; height:auto; max-width:55vw; max-height:55vh; object-fit:contain;
-  z-index:2; pointer-events:none; opacity:1;
+
+/* 배경이미지는 '흐름'에 두기 */
+#key-visual .kv-bg {
+  display: block;
+  width: 100%;
+  height: auto;       /* 원본 비율대로 섹션 높이 결정 */
+  object-fit: contain; /* contain 유지 가능하지만 height:auto면 사실 필요 없음 */
+  object-position: center;
+  /* position: absolute 제거! */
+  z-index: 0;
 }
-.kv-row{ position:relative; z-index:1; display:flex; width:100%; height:100%; }
-.kv-col{ flex:1; display:flex; align-items:center; justify-content:center; font-weight:700; color:#111; }
-.kv-col:nth-child(1){ background:rgba(222,222,222,.5) }
-.kv-col:nth-child(2){ background:rgba(174,174,174,.5) }
-.kv-col:nth-child(3){ background:rgba(125,125,125,.5) }
 
-/* ===== 키비주얼 2(간단 트립틱) ===== */
-.kv-triptych{ width:100%; height:100vh; margin-bottom: 50vh;}
-.kv-triptych .kv-row{ height:100%; }
-
-/* OVERVIEW */
-#overview{
-  display:flex; justify-content:flex-start; align-items:flex-start; text-align:left;
- padding-left:5vw; padding-bottom:0; background:var(--c-over);
+/* 로고는 겹치기 */
+#key-visual .kv-logo {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: auto;
+  z-index: 1;
 }
-.overview_inner{ width:100%; max-width:1000px; margin-bottom:10vh; }
-.overview_inner h1{ font-size:30px; margin:0 }
-.overview_inner p{ margin-top:4vh; font-size:12px }
 
-/* 2열 카드 */
-.overview_wrap{ width:100%; max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:32px 36px }
-.kv-card{ display:flex; flex-direction:column; min-width:0; max-width:100% }
-.kv-chip{ height:56px; display:flex; align-items:center; justify-content:center; background:#e4e4e4; border-radius:18px; font-weight:800; letter-spacing:.2px }
-.kv-chip--left{ color:#d2512c } .kv-chip--right{ color:#344b6b }
-.kv-panel-shape{ margin-top:16px; background:#cfcfcf; border-radius:20px; min-height:320px; box-shadow:0 2px 0 rgba(0,0,0,.02) inset }
+
+
+/* ===== OVERVIEW ===== */
+#overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  background: #ffffff;
+  margin-bottom: 30vh;
+  overflow: hidden;
+}
+
+/* 텍스트 영역 */
+.overview_inner {
+  width: 100%;
+  max-width: 100%;
+  padding: 5vh 5vw;
+}
+
+.overview_inner h1 {
+  font-size: 30px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.overview_inner p {
+  margin-top: 4vh;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* 이미지 영역 */
+.overview_image {
+  width: 100%;
+  display: block;
+  margin: 5vh 0;
+}
+
+.overview_image .ov-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ===== 카드 3개 ===== */
+.overview_cards {
+  width: 100%;
+  padding: 0 5vw;              /* 좌우 여백 5vw */
+  margin: 0 auto 10vh;
+  display: flex;
+  justify-content: space-between; /* 카드 간 균등 간격 */
+  align-items: stretch;
+  gap: 57px;                   /* 카드 사이 여백 */
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.overview_card {
+  position: relative;
+  flex: 1 1 calc(33.333% - 40px); /* 3개 균등 분할 */
+  aspect-ratio: 521.06 / 487.97;  /* ✅ 비율 유지 (약 1.07:1) */
+  background: #FFFCF6;
+  border-radius: 20px;
+  padding: 60px 30px 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.overview_card:hover {
+  transform: translateY(-5px);
+}
+
+.overview_icon {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+}
+
+.overview_card .num {
+  display: block;
+  font-weight: 700;
+  color: #b89000;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.overview_card h3 {
+  font-size: 22px;
+  margin: 0;
+  color: #222;
+}
+
+.overview_card .sub {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.overview_card .desc {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ===== 반응형 (모바일용) ===== */
+@media (max-width: 900px) {
+  .overview_card {
+    flex: 1 1 100%;
+    aspect-ratio: 521.06 / 487.97; /* 모바일에서도 비율 유지 */
+  }
+  .overview_cards {
+    gap: 24px;
+  }
+  .overview_icon {
+    width: 120px;
+    height: 120px;
+    top: -20px;
+    right: 20px;
+  }
+  .overview_inner h1 {
+    font-size: 24px;
+  }
+}
+
+
+
+
 
 /* PLANNING – 카드/도트/CTA */
 #planning{}
@@ -69,38 +203,6 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 .planning_inner h1{ font-size:30px; margin:0 }
 .planning_inner p{ margin-top:4vh; font-size:12px }
 
-.planning_inner2{ width:100%; max-width:1200px; margin:0 auto; padding:30vh 0 10vh }
-.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:16px }
-.step-card{ background:#e5e5e5; border-radius:16px; padding:20px 18px 22px; box-shadow:0 1px 0 rgba(0,0,0,.03); min-height:210px }
-.step-no{ font-weight:800; font-size:20px; margin-bottom:10px }
-.step-no--or{ color:#d2512c } .step-no--nv{ color:#344b6b }
-.ph{ background:#bfbfbf; height:14px; border-radius:999px; margin:10px 0 8px }
-.ph-lg{ width:60% } .ph-sm{ width:72%; height:12px }
-.ph-line{ height:10px; border-radius:999px; background:#bdbdbd; margin:10px 0; width:90% }
-.step-card .ph-line:nth-of-type(5){ width:86% }
-.step-card .ph-line:nth-of-type(6){ width:70% }
-
-/* (PLANNING 전용) 세로 점 */
-#planning .dots.dots--planning{
-  display:flex; flex-direction:column; align-items:center; gap:8px; padding:24px 0 18px;
-}
-#planning .dots .dot{ width:6px; height:6px; border-radius:50%; background:#9c9c9c; opacity:.6 }
-#planning .dot--0{ background:#fff; opacity:1 } #planning .dot--1{ opacity:.4 } #planning .dot--2{ opacity:.6 } #planning .dot--3{ opacity:.8 }
-
-.cta-box{ background:#e5e5e5; border-radius:14px; padding:38px 22px 28px; margin-top:12px }
-.cta-pill{ display:block; margin:0 auto 18px; height:44px; min-width:240px; padding:0 24px; border:none; border-radius:999px; background:#344b6b; color:#fff; font-weight:800 }
-.cta-lines{ display:flex; flex-direction:column; gap:10px; align-items:center }
-.cta-line{ height:14px; border-radius:999px; background:#bfbfbf }
-.cta-line--lg{ width:min(640px, 80%) } .cta-line--sm{ width:min(420px,60%); height:8px; opacity:.8 }
-
-:root{
-  --bg-accent: url("img/logo2.png");
-  --card-bg: #f4f4f4;
-  --card-bd: #e5e5e7;
-  --text: #222;
-  --muted: #8b8b90;
-  --accent: #ff4a3a;
-}
 
 :root{
   --bg-accent: url("img/logo2.png"); /* 왼쪽 배경 이미지 */
@@ -123,7 +225,6 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
 .reviews{
   position: relative;
   overflow: hidden;
-  background: #fff;
 
   /* 섹션 안팎 여백 */
   padding: 80px 16px;
@@ -133,6 +234,9 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   --bg-width: 50%;
   --bg-top: 0;
   --bg-bottom: 0;
+  margin-bottom: 20vh;
+
+  border: solid black;
 }
 /* 왼쪽 배경 이미지 (contain: 전체 보이게) */
 .reviews::before{
@@ -297,6 +401,183 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
     transform: none;           /* 모바일에서는 정렬 변형 제거 */
   }
   .review__avatar{ width:72px; height:72px; margin-left:-36px; }
+}
+
+/* ===== 프로젝트 배경 섹션 ===== */
+.project_bg {
+  width: 100%;
+  padding: 0 5vw;
+  margin: 0 auto 15vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.project_bg_inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 150px; /* 도트 ↔ 라벨/카드 간격 */
+}
+
+/* ===== 상단 도트 (정중앙 + 6색) ===== */
+.project_dots {
+  width: 10px;
+  height: 10px;
+  background: #FCFAF7;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto 56px; /* ⬅ 도트 아래 공간 넉넉히(라벨이 안덮게) */
+}
+.project_dots::before,
+.project_dots::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.project_dots::before {
+  top: 0;
+  background: #FAF7F2;
+  box-shadow:
+    0 30px #F7F3ED,
+    0 60px #F4EFE8,
+    0 90px #F0EBE3,
+    0 120px #E8E0D4;
+}
+.project_dots::after { display: none; }
+
+/* 라벨과 카드를 묶는 상자(라벨 absolute의 기준) */
+.project_box {
+  position: relative;
+  width: 100%;
+  /* 라벨을 겹치기 하므로 여기 padding-top은 필요 없음 */
+}
+
+/* ✅ 라벨: 카드 상단에 겹치며 정확히 중앙 */
+.project_label {
+  position: absolute;
+  left: 50%;
+  top: 0;                          /* project_box의 상단을 기준 */
+  transform: translate(-50%, -50%);/* 상단 테두리에 반쯤 걸치도록 */
+  background: #B48B11;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px 28px;
+  border-radius: 30px;
+  white-space: nowrap;
+  z-index: 2;                      /* 카드 위로, 도트는 위 여백으로 피해둠 */
+}
+
+/* 아래 흰색 카드(라벨 높이만큼 위 여백 확보) */
+.project_card {
+  background: #FFFCF6;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  width: 100%;
+  max-width: none;                 /* 좌우 5vw만 남기고 꽉 채움 */
+  text-align: center;
+  padding: 60px 40px 50px;         /* ⬅ 라벨이 겹치므로 상단 패딩 여유 */
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+/* 텍스트 스타일 */
+.project_card .subtext { font-size: 13px; color: #666; margin-bottom: 16px; }
+.project_card .maintext { font-size: 20px; font-weight: 600; color: #222; line-height: 1.6; }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .project_card { padding: 56px 24px 40px; }
+  .project_card .maintext { font-size: 18px; }
+  .project_label { font-size: 13px; padding: 8px 20px; }
+}
+
+
+/* ===== INTRO SECTION (텍스트+이미지 좌우 배치) ===== */
+.intro_section {
+  width: 100%;
+  padding: 0 5vw;              /* ✅ 좌우 5vw 여백 */
+  margin: 0 auto 20vh;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* flex 정렬 */
+.intro_section .intro_inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; /* ✅ 이미지가 오른쪽으로 붙게 */
+  flex-wrap: nowrap;
+  gap: 0;                         /* ✅ gap 제거 (여백 합산 문제 방지) */
+}
+
+/* 왼쪽 텍스트: 60% */
+.intro_section .intro_text {
+  flex: 0 0 70%;
+  max-width: 70%;
+  padding-right: 5vw;             /* ✅ 글과 이미지 사이 간격 확보 */
+  box-sizing: border-box;
+}
+
+/* 오른쪽 이미지: 40% */
+.intro_section .intro_image {
+  flex: 0 0 30%;
+  max-width: 30%;
+  display: flex;
+  justify-content: flex-end;      /* ✅ 내부 이미지 오른쪽 정렬 */
+  align-items: center;
+}
+
+/* 텍스트 스타일 */
+.intro_section .intro_text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 2vh;
+  line-height: 1.5;
+}
+
+.intro_section .intro_text p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* 이미지 크기 */
+.intro_section .intro_image img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 반응형 (모바일일 때 세로 배치) */
+@media (max-width: 900px) {
+  .intro_section .intro_inner {
+    flex-direction: column;
+    text-align: left;
+    gap: 40px;
+  }
+  .intro_section .intro_text,
+  .intro_section .intro_image {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .intro_section .intro_text {
+    padding-right: 0;             /* 모바일에서는 간격 제거 */
+  }
+  .intro_section .intro_image {
+    justify-content: center;
+  }
+  .intro_section .intro_text h2 { font-size: 22px; }
+  .intro_section .intro_text p  { font-size: 14px; }
 }
 
 
