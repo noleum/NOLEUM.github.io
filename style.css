@@ -1012,13 +1012,131 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
   .tp-swatch{ grid-column: span 1; }
 }
 
+/* =======================
+   로고 섹션
+   ======================= */
+.typo-logo{
+  padding: 0 5vw;
+  margin: 10vh 0 8vh;
+  box-sizing: border-box;
+}
+
+.logo-heading{
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* 2열 그리드: 왼쪽(큰 이미지) + 오른쪽(작은 이미지+텍스트) */
+.logo-grid{
+  display: grid;
+  grid-template-columns: 1.3fr 1fr; /* 왼쪽이 약간 더 넓게 */
+  gap: 5vw;
+  align-items: stretch;             /* 왼쪽 높이에 맞춰 오른쪽을 늘림 */
+}
+
+/* 왼쪽 큰 이미지 */
+.logo-left img{
+  width: 90%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* 오른쪽 컬럼: 위(이미지2개) / 아래(설명) 끝단 정렬 */
+.logo-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   /* 위·아래로 벌려서 설명을 맨 아래로 */
+  align-self: stretch;              /* 그리드 높이에 맞춰 늘림 */
+}
+
+/* 오른쪽 작은 이미지 두 개 (가로 나란히) */
+.logo-small{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2vw;
+  margin-bottom: 2vh;
+  flex: 0 0 auto;                   /* 위쪽에 고정 */
+}
+.logo-small img{
+  width: 32%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* 설명 텍스트 (아래쪽에 붙음) */
+.logo-desc{
+  flex: 0 0 auto;                   /* 아래쪽 고정 */
+}
+.logo-desc strong{
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.logo-desc p{
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* 반응형 */
+@media (max-width: 960px){
+  .logo-grid{
+    grid-template-columns: 1fr;
+    gap: 4vh;
+  }
+  .logo-right{
+    justify-content: flex-start;    /* 단일 컬럼일 땐 일반 흐름 */
+  }
+  .logo-small{
+    gap: 4vw;
+  }
+  .logo-desc p{
+    font-size: 13.5px;
+  }
+}
 
 
 
 /* VIDEO */
-#video{ position:relative; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; background-color: white;}
-.video_text{ width:100%; padding-left:5vw; text-align:left; z-index:2 }
-.video_inner{ width:90vw; height:90vh; background:#e4e4e4; margin-top:3vh }
+#video{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+}
+
+/* 제목 */
+.video_text{
+  width: 100%;
+  padding-left: 5vw;
+  text-align: left;
+  z-index: 2;
+}
+
+/* 이미지 래퍼 */
+.video_inner{
+  width: 100%;              /* 좌우 여백 없이 꽉 채움 */
+  background: #e4e4e4;
+  margin-top: 3vh;
+  overflow: hidden;          /* 혹시 모를 넘침 방지 */
+}
+
+/* 이미지 자체 */
+.video_inner img{
+  display: block;
+  width: 100%;               /* 좌우 꽉 채우기 */
+  height: auto;              /* 비율에 맞게 세로 자동 */
+  object-fit: contain;       /* 잘림 없이 전부 보이게 */
+}
+
 
 /* TEAM 슬라이더 */
 #team{
