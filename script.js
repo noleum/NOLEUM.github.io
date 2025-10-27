@@ -135,50 +135,53 @@ render(0, 'left');
 // - prev/next/keydown 또 추가하는 블록
 // - render(i); 다시 호출하는 블록
 
+// DESIGN GALLERY: 캡션 페이드인 (수정본)
+(() => {
+  // JS 플래그
+  document.documentElement.classList.add('js');
 
-// =========================
-// 🔹 DESIGN HERO (스크롤 시 이미지/글 전환)
-// =========================
-
-document.addEventListener('DOMContentLoaded', () => {
-  const root = document.querySelector('#design-hero');
+  const root = document.querySelector('#design-gallery');
   if (!root) return;
 
-  const slides = [...root.querySelectorAll('.sh-slide')];
-  const dotsWrap = root.querySelector('.sh-dots');
-  dotsWrap.innerHTML = slides.map(() => '<i></i>').join('');
-  const dots = [...dotsWrap.querySelectorAll('i')];
-  let current = 0;
+  const captions = [...root.querySelectorAll('.gh-item figcaption')];
+  if (!captions.length) return;
 
-  function setIndex(i) {
-    const idx = Math.max(0, Math.min(slides.length - 1, i));
-    slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-    dots.forEach((d, k) => d.classList.toggle('is-on', k === idx));
+  // ✨ 애니메이션 대상에 초기 숨김 클래스 부여 (CSS에서 .reveal만 숨김)
+  captions.forEach(c => c.classList.add('reveal'));
+
+  // IO 미지원 브라우저: 바로 보여주기
+  if (!('IntersectionObserver' in window)) {
+    captions.forEach(c => c.classList.add('is-in'));
+    return;
   }
 
-  // 🔑 스크롤 계산 (정확한 비율 계산)
-  function getIndex() {
-    const rect = root.getBoundingClientRect();
-    const visible = Math.min(window.innerHeight, Math.max(0, window.innerHeight - Math.abs(rect.top)));
-    const progress = 1 - (rect.bottom - window.innerHeight) / (root.offsetHeight - window.innerHeight);
-    return Math.max(0, Math.min(slides.length - 1, Math.round(progress * (slides.length - 1))));
-  }
-
-  let raf = null;
-  function onScroll() {
-    if (raf) return;
-    raf = requestAnimationFrame(() => {
-      raf = null;
-      const newIndex = getIndex();
-      if (newIndex !== current) {
-        current = newIndex;
-        setIndex(current);
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');   // 보이기
+        // 한 번만 트리거하고 싶으면 관찰 해제
+        obs.unobserve(entry.target);
       }
     });
-  }
+  }, {
+    threshold: 0.12,             // 살짝만 보여도 트리거
+    root: null,
+    rootMargin: '0px 0px -10% 0' // 하단에서 조금 일찍
+  });
 
-  // 초기화
-  setIndex(0);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-});
+  captions.forEach(c => io.observe(c));
+
+  // 최초 진입 시 이미 화면 안에 있는 캡션 즉시 표시
+  const revealNow = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    captions.forEach(c => {
+      const r = c.getBoundingClientRect();
+      if (r.top < vh * 0.9 && r.bottom > 0) {
+        c.classList.add('is-in');
+      }
+    });
+  };
+  revealNow();
+  window.addEventListener('load', revealNow);
+  window.addEventListener('resize', revealNow);
+})();

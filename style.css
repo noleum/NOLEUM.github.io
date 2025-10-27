@@ -1,3 +1,6 @@
+@import url('https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@2.1.2/css/SpoqaHanSansNeo.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
 :root{
   --header-h:64px; --container:1200px;
   --text:#000000; --white:#fff;
@@ -8,9 +11,10 @@
 *{ box-sizing:border-box }
 html,body{
   height:100%; margin:0;
-  font-family:system-ui, Segoe UI, Apple SD Gothic Neo, Pretendard, sans-serif;
   color:var(--text); background:#ffffff;
   overflow-x:hidden;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-weight: 400;
 }
 
 /* Header */
@@ -702,83 +706,94 @@ nav{ flex:1; display:flex; align-items:center; gap:70px; justify-content:right; 
      별도로 재선언할 필요가 없어 제거했습니다. */
 }
 
-.scroll-hero {
-  height: calc(100vh * 4);
-  position: relative;
-  z-index: 5; /* 다른 섹션이 덮지 않도록 */
-}
 
-.scroll-hero .sh-sticky {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+/* ===== DESIGN GALLERY (full-bleed + caption fade-in) ===== */
+.gallery-hero {
+  padding: 0;
   background: #000;
+  color: #fff;
 }
-
-/* 이미지 전환 */
-.sh-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  will-change: opacity, transform;
-}
-.sh-slide.is-active {
-  opacity: 1;
-}
-.sh-slide img {
+.gallery-hero .gh-item {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.05);
-}
-.sh-slide.is-active img {
-  transform: scale(1);
+  margin: 0;
+  overflow: hidden;
 }
 
-/* 텍스트 */
-.sh-slide figcaption {
+/* 이미지: 화면 가로 100%로 꽉 차게 */
+.gallery-hero .gh-item img {
+  display: block;
+  position: relative;
+  left: 50%;
+  width: 100vw;
+  max-width: none;
+  height: auto;
+  margin-left: -50vw;
+}
+
+/* 하단 그라디언트 (z-index 1) */
+.gallery-hero .gh-item::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: min(32vh, 240px);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 캡션 (z-index 2) */
+.gallery-hero .gh-item figcaption {
   position: absolute;
   left: 5vw;
-  bottom: 8vh;
+  right: 5vw;
+  bottom: 4vh;
+  z-index: 2;
   color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
-.sh-slide h3 {
-  margin: 0 0 12px 0;
-  font-size: clamp(24px, 4vmin, 40px);
+
+/* 타이틀·본문 스타일 */
+.gallery-hero .gh-item h3 {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 2.6vmin, 22px);
   font-weight: 800;
 }
-.sh-slide p {
+.gallery-hero .gh-item p {
   margin: 0;
+  font-size: clamp(13px, 2vmin, 15px);
   line-height: 1.7;
-  font-size: 15px;
-  max-width: 60vw;
   opacity: 0.95;
 }
 
-/* 진행점 */
-.sh-dots {
-  position: absolute;
-  bottom: 4vh;
-  left: 5vw;
-  display: flex;
-  gap: 8px;
+/* JS 작동 시: .reveal 상태에서만 숨김 처리 */
+.js .gallery-hero .gh-item figcaption.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  will-change: opacity, transform;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.sh-dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  transition: transform .3s, background .3s;
+
+/* 화면 진입 시 나타나는 상태 */
+.js .gallery-hero .gh-item figcaption.is-in {
+  opacity: 1;
+  transform: translateY(0);
 }
-.sh-dots i.is-on {
-  background: #fff;
-  transform: scale(1.2);
+.js .gallery-hero .gh-item figcaption.is-in h3 {
+  transition-delay: 0.05s;
 }
+.js .gallery-hero .gh-item figcaption.is-in p {
+  transition-delay: 0.12s;
+}
+
+/* 모션 최소화 환경 대응 */
+@media (prefers-reduced-motion: reduce) {
+  .js .gallery-hero .gh-item figcaption {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
 
 
 /* =========================
