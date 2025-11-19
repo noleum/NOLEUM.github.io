@@ -1,0 +1,76 @@
+/* 페이지 기본 */
+html, body {  
+  padding:0; 
+  overflow-x: hidden;
+}
+
+.v-text {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 24px;
+}
+
+.v-p {
+  margin: 0 0 4vh;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #EF4722;
+  letter-spacing: -0.04em;
+}
+
+/* 섹션: 풀폭 + 좌우 패딩 + 바닥 그라디언트 */
+#video-section { 
+  position: relative;
+  width: 100%;
+  background:#181818;
+
+  /* 🔥 이제 margin이 아니라 padding으로 여백 만들기 */
+  margin: 0;
+  padding-left: 150px; 
+  padding-right: 150px; 
+  padding-bottom: 40px; /* 밑에 살짝 여유 */
+
+  overflow: hidden;
+}
+
+/* 섹션 바닥에서 위로 500px 만큼 #EA4521 그라디언트 */
+#video-section::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 951px;
+
+  background: linear-gradient(
+    to top,
+    #AB371E 0%,
+    #AB371E 5%,
+    #792D1C 25%,    
+    #181818 60%
+  );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 안쪽 컨테이너 (텍스트 + 영상) */
+.video_inner {
+  position: relative;   /* 그라디언트 위로 올라오게 */
+  width: 100%;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 36px;
+  z-index: 1;
+}
+
+/* 영상은 가운데 / 가로 100% (패딩 안쪽 기준) */
+.video_inner video {
+  display:block;
+  width: 100%; 
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  background:#000;
+}

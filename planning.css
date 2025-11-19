@@ -1,0 +1,1242 @@
+/* =======================================
+   🌙 GLOBAL VARIABLES (한 번만 선언)
+   ======================================= */
+:root {
+  /* Color system */
+  --page-bg: #181818;
+  --text: #ffffff;
+  --muted: #cfcfcf;
+  --muted-2: #bdbdbd;
+  --accent: #EA4521;
+  --accent-2: #E8422A;
+
+  /* Layout grid */
+  --grid-count: 4;
+  --grid-gutter: 50px;
+  --grid-margin: 120px;
+
+  /* Graph bar height (기본) */
+  --max-bar-height: 843px;
+
+  /* Venn section */
+  --venn-bg: #EA4521;
+  --venn-white: #ffffff;
+  --venn-inner-w: 720px;
+  --venn-inner-h: 360px;
+  --venn-circle-radius: 52%;
+  --venn-gap: 6%;
+  --venn-text-max: 560px;
+  --venn-padding-vertical: 6vh;
+
+  /* Planning hero */
+  --ph-accent: #e84a2a;
+  --ph-shape-shadow: 98px 110px 30px rgba(107, 107, 107, 0.14);
+  --ph-shape-small-shadow: 0 0 4.5px rgba(18,18,18,0.10);
+  --ph-pill-font: 41px;
+  --ph-pill-padding: 35px 70px 35px 70px;
+
+  /* Layout max width */
+  --max-width-2560: 2560px;
+}
+
+/* =========================
+   BASIC RESET
+   ========================= */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Spoqa Han Sans Neo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+
+
+/* =========================
+   PLANNING
+   ========================= */
+.planning {
+  width: 100%;
+  padding: 11vh 0;
+  background-color: #181818;
+  position: relative;
+  overflow: hidden;
+}
+
+.planning-overview2 {
+  max-width: 900px;  
+  margin: 0 auto;   
+  padding-top: 10vh;
+  color: #fff;
+}
+
+/* 초반 kicker */
+.pp-kicker2 {
+  font-size: 22px;
+  color: #EA4521;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-align: center;
+  transition: opacity 0.35s ease;
+}
+
+/* 메인 제목 */
+.pp-title2 {
+  font-size: 38px;
+  line-height: 1.3;
+  margin: 0 0 18px;
+  text-align: center;
+  transition: opacity 0.35s ease;
+  font-weight: 400;
+}
+
+/* 본문 설명 */
+.pp-desc2 {
+  font-size: 28px;
+  line-height: 1.4;
+  color: #747474;
+  margin: 0;
+  text-align: center;
+  transition: opacity 0.35s ease;
+}
+
+/* 🔥 개요 섹션 위로 비디오 그라디언트를 반전해서 자연스러운 이어짐 */
+.planning::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 600px;  /* 필요하면 조절 가능 */
+  pointer-events: none;
+
+  /* 그라디언트 */
+  background: linear-gradient(
+    to bottom,
+    #AB371E 1%,
+    #792D1C 15%, 
+    #5e281c 30%, 
+    #251917 55%,
+    #181818 80%
+  );
+
+  z-index: 0;
+}
+
+/* =========================
+   레이아웃 (가운데 정렬)
+   ========================= */
+.planning-inner {
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 개요 텍스트: 불투명도 애니메이션 */
+.planning-overview {
+  transition: opacity 0.35s ease;
+}
+
+.planning-overview2 {
+  transition: opacity 0.35s ease;
+}
+
+/* ⭐ body에 클래스 붙었을 때 (ORBIT에 HOVER 했을 때) 흐려지게 */
+body.orbits-hover .pp-text2,
+body.orbits-hover .pp-kicker2,
+body.orbits-hover .pp-title2,
+body.orbits-hover .pp-desc2 ,
+body.orbits-hover .orbit-label-top,
+body.orbits-hover .orbit-tag {
+  opacity: 0.3;
+}
+
+.orbit-c {
+  height: auto;
+  padding-bottom: 20vh;
+}
+
+/* =========================
+   문양 + 오렌지 원
+   ========================= */
+.planning-orbits {
+  margin-top: 90px;
+  /* display: flex;              기존 플렉스 제거 */
+  /* justify-content: center;    → 텍스트 중앙 정렬로 대체 */
+  /* gap: 0; */
+  text-align: center;            /* 원 3개 + 텍스트 모두 가운데 */
+  position: relative;
+  z-index: 5;
+}
+
+/* ✅ 배경 어둡게 만드는 ::before 는 전부 제거했음 */
+
+/* 2번째, 3번째 문양 살짝 겹치게 */
+.orbit + .orbit {
+  margin-left: clamp(-32px, -2vw, -45px);
+}
+
+/* 문양 박스: 1920 기준 적당히 보이게 */
+.orbit {
+  width: min(22vw, 400px); /* 1920에서 대략 360px 근처 */
+  aspect-ratio: 1 / 1;
+  position: relative;
+  display: inline-flex;       /* flex → inline-flex로 변경 */
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(40px);
+  animation: orbitGroupIn 1.6s cubic-bezier(.22,.82,.26,1) forwards;
+}
+
+/* 등장 딜레이 그대로 유지 */
+.planning-orbits .orbit:nth-child(1) { animation-delay: 1.1s; }
+.planning-orbits .orbit:nth-child(2) { animation-delay: 1.3s; }
+.planning-orbits .orbit:nth-child(3) { animation-delay: 1.5s; }
+
+/* 문양 이미지 (기본) */
+.orbit-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+/* 안쪽 텍스트 컨테이너 */
+.orbit figcaption {
+  width: 95%;
+  height: 95%;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 전통놀이 – 원들 전체 밑에 위치 */
+.orbit-label-top {
+  margin-top: 70px;        /* 원 아래 여백 */
+  font-size: 18px;
+  font-weight: 100;
+  opacity: 0.7;
+  transition: opacity 0.30s ease;
+}
+
+/* 비석치기 / 쥐불놀이 / 제기차기 */
+.orbit-label-main {
+  font-size: 38px;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 400;
+  color: #fff;
+  transition: opacity 0.45s ease;
+}
+
+/* 오렌지 원 – 문양과 정확히 겹치게(동심원) */
+.orbit-core {
+  position: absolute;
+width: 100%;
+height: 100%;
+  border-radius: 50%;
+  background: #EA4521;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;  /* 기본은 숨김 */
+  transform: scale(0.8);
+  transition:
+    opacity 0.7s cubic-bezier(.22,.82,.26,1),
+    transform 0.45s cubic-bezier(.22,.82,.26,1);
+}
+
+.orbit-tag {
+  display: block;          /* 줄바꿈해서 전통놀이 밑에 오게 */
+  font-size: 18px;
+  opacity: 0.70;
+  margin-top: 25px;
+  font-weight: 100;
+  letter-spacing: 0.12em;
+}
+
+.orbit-k {
+  font-size: 38px;
+  font-weight: 400;
+}
+
+/* =========================
+   HOVER 상태 – 3개 동시에
+   ========================= */
+
+/* 문양 아무 데나 올라가면: 문양/텍스트 서서히 사라지고 */
+.planning-orbits:hover .orbit-bg,
+.planning-orbits:hover .orbit-label-main {
+  opacity: 0;
+}
+
+/* 세 개 오렌지 원이 동시에 나타남 */
+.planning-orbits:hover .orbit-core {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================
+   그룹 등장 애니메이션
+   ========================= */
+@keyframes orbitGroupIn {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   모바일 대응 (hover 없음)
+   ========================= */
+@media (max-width: 900px) {
+  .orbit-c {
+    height: auto;
+  }
+
+  .planning-orbits {
+    /* flex-direction: column;
+    align-items: center; */
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .orbit {
+    width: 70vw;
+    margin-left: 0;
+    display: flex;       /* 모바일에서는 한 줄씩 크게 */
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  /* 모바일에서는 항상 “호버된 상태”로 – 원 3개 전부 보이게 */
+  .orbit-core {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* 문양도 같이 보이게 하고 싶으면 옅게만 남김 */
+  .orbit-bg {
+    opacity: 0.25;
+  }
+
+  .orbit-label-top,
+  .orbit-label-main {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   개요 텍스트
+   ========================= */
+.planning-overview {
+  max-width: 800px;  /* 폭 제한해서 너무 넓어지지 않게 */
+  margin: 0 auto;    /* 가운데 정렬 */
+  padding-top: 10vh;
+  color: #fff;
+}
+
+.ph-text2 {
+ max-width: 1070px; color: #ffffff; 
+   margin-left: 150px; 
+ text-align: left;
+}
+
+/* 초반 kicker */
+.ph-kicker2 {
+  font-size: 22px;
+  color: #EA4521;
+  margin-bottom: 10px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* 메인 제목 */
+.ph-title2 {
+  font-size: 38px;
+  line-height: 1.3;
+  margin: 0 0 18px;
+  text-align: left;
+}
+
+/* 본문 설명 */
+.ph-desc2 {
+  font-size: 28px;
+  line-height: 1.4;
+  color: #747474;
+  margin: 0;
+  text-align: left;
+}
+
+/* 카드 3개 행 */
+.cards-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 90px;
+  margin-top: 150px; 
+  margin-left:150px; 
+    margin-right: 150px; 
+}
+
+.info-box {
+  aspect-ratio: 687.42 / 643.75;
+  position: relative;
+  background: #303030;
+  padding: 70px;
+  border-radius: 30px;
+  color: var(--text);
+  min-height: 220px;
+}
+.info-box .idx {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #EA4521;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: block;
+}
+.info-box h3 {
+  margin: 0 0 7px;
+  font-size: 48px;
+  font-weight: 400;
+}
+.info-box .muted {
+  font-size: 20px;
+  font-weight: 300;
+  color: #c0c0c0;
+}
+.info-box .desc {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #c0c0c0;
+  margin-top: 130px;
+  letter-spacing: -0.03em;
+}
+.info-box .box-deco {
+  position: absolute;
+  top: -75px;
+  right: -45px;
+  width: 290px;
+  pointer-events: none;
+}
+
+
+/* =========================
+   GRAPH / PLANNING-SPLIT
+   ========================= */
+.planning-split {
+  /* display: grid;
+  grid-template-columns: 44% 1fr;
+  align-items: start; */
+  width: 100%;
+  height: auto;
+  background: #181818;
+  box-sizing: border-box;
+  padding-top: 20vh;
+  padding-bottom: 24vh;
+
+
+}
+
+/* 왼쪽 텍스트 */
+.ps-left {
+  text-align: left;
+    margin-left: 150px; 
+}
+
+.ps-kicker2 {
+  font-size: 22px;
+  color: #EA4521;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.ps-left h2 {
+  font-size: 38px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+.ps-left p {
+  margin: 0;
+  color: #747474;
+  max-width: 900px;
+  line-height: 1.85;
+  font-size: 28px;
+}
+
+/* 오른쪽 그래프 (그리드 오른쪽 정렬) */
+.ps-right {
+  /* grid-column: 2 / 3;
+  justify-self: end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end; */
+  padding-left: 0;
+  margin-top: -200px;
+  /* width: 100%; */
+    margin-right: 150px; 
+}
+
+/* 그래프 전체 (bars) */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 60px;              /* ✅ 막대 사이 간격 크게 (기존 36px → 60px) */
+  width: auto;
+  max-width: 100%;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  margin-left: auto;
+}
+
+/* 개별 막대 */
+.bar {
+  --stagger: 0ms;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;           /* ✅ 막대 가로 두께 Up (241px → 280px) */
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 680ms cubic-bezier(.2,.8,.2,1),
+    transform 680ms cubic-bezier(.2,.8,.2,1);
+  transition-delay: var(--stagger, 0ms);
+  will-change: transform, opacity;
+}
+
+.bar.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bar-caption {
+  font-size: 22px;
+  color: #ffffff;
+  margin-bottom: 35px;
+  text-align: center;
+  transform: translateY(-6px);
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+/* 막대 도형 */
+.bar-shape {
+  width: 100%;
+  height: 0;
+  border-radius: 45px;
+  background: var(--accent-2);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 27px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+  transform-origin: bottom center;
+  transform: translateY(8px) scaleY(0);
+  transition: transform 1600ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+}
+.bar.in-view .bar-shape {
+  transform: translateY(0) scaleY(1);
+}
+
+/* 값 부분: 숫자 + % 나눠 스타일링 */
+.bar-value {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  color: #fff;
+  transform: translateY(6px);
+  transition: transform 500ms cubic-bezier(.2,.8,.2,1);
+}
+.bar.in-view .bar-value {
+  transform: translateY(0);
+}
+
+/* 숫자 부분 (크게) */
+.bar-num {
+  font-size: 70px;
+  font-weight: 600;
+}
+
+/* % 부분 (조금 작게) */
+.bar-unit {
+  font-size: 50px;
+  font-weight: 400;
+  transform: translateY(-2px);
+}
+
+.bar-num,
+.bar-unit {
+  font-family: "Pretendard", sans-serif ;
+  letter-spacing: -0.03em;
+}
+
+.bar-sub {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #8e8e8e;
+  text-align: center;
+}
+
+/* =========================
+   접근성: 모션 감소 선호 시 전환 최소화
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .bar-shape,
+  .bar-value {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (min-width: 2560px) {
+  .bar-shape { border-radius: 40px; }
+  .bars { gap: 50px; }
+  .bar { width: 280px; }
+}
+
+@media (max-width: 900px) {
+  .planning-split {
+    grid-template-columns: 1fr;
+    padding: 6vh 4vw;
+    gap: 28px;
+  }
+  .ps-left { padding-right: 0; }
+  .ps-right {
+    justify-content: center;
+    padding-left: 0;
+  }
+  .bars {
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .bar {
+    width: 140px;
+    min-width: 120px;
+  }
+  .bar-caption { font-size: 11px; }
+  .bar-value { transform: translateY(0); }
+  .bar-num { font-size: 20px; }
+  .bar-unit { font-size: 14px; }
+}
+
+/* =========================
+   PLANNING-VENN
+   ========================= */
+#planning-venn {
+  width: 100%;
+  /* 🔹 고정 height 대신 최소 높이만 보장 */
+  min-height: auto;
+  height: auto;
+
+  padding-top: 3vh;
+  padding-bottom: 25vh;
+  background: #181818;
+  color: #ffffff;
+
+  /* 🔹 세로는 흘러가게, 가로만 잘리게 */
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.ph-container3 {
+  max-width: 1000px;
+  margin-left: 150px; 
+}
+
+.ph-kicker3 {
+  display: block;
+  font-weight: 400;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #EA4521;
+}
+.ph-title3 {
+  margin: 0 0 18px;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+}
+.ph-desc3 {
+  margin: 0;
+  color: #bababa;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+/* 토글 버튼 줄 */
+.venn-toggle-wrap {
+  margin-top: 40px;
+  margin-bottom: 80px;
+  margin-left: 150px; 
+  display: flex;
+  gap: 8px;
+
+  /* 🔥 토글도 자연스럽게 나타나도록 */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.venn-toggle-wrap.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venn-tab {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 18px 38px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+  border-radius: 999px;
+  background: #303030;
+  color: #ffffff;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* 클릭 후에만 주황색 */
+.venn-tab.is-active {
+  background: #EA4521;
+}
+
+/* 전체 패널 영역 */
+.venn-panel {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.venn-panel-inner {
+  margin: 0;
+}
+
+.venn-box {
+  position: relative;
+  width: 100%;
+  left: 0;
+
+  background: #181818;
+  padding: 60px 0;
+  box-sizing: border-box;
+  min-height: 720px;
+  overflow: visible;
+
+  opacity: 0;
+  transform: translateY(40px);   /* ✅ X축 이동 제거 */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.venn-box.is-active {
+  opacity: 1;
+  transform: translateY(0);      /* ✅ 세로만 자연스럽게 */
+}
+
+
+/* 단어 세트(민속촌 / 박물관 한 묶음)
+   👉 같은 자리에 겹쳐놓고 is-active만 바꿔서 보이게 */
+.venn-words {
+  position: absolute;      /* ⭐ 서로 겹치게 */
+  inset: 0;                /* 박스 안 전체 영역에 배치 */
+  margin: 0;
+
+  opacity: 0;
+  pointer-events: none;
+
+  /* 👉 글자 세트 바뀔 때 '움직임 없이' 페이드만 */
+  transition: opacity 0.45s ease;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 80px;           /* 줄 간 간격 */
+}
+
+/* 현재 선택된 세트 */
+.venn-words.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 한 줄(row) */
+.venn-row {
+  display: flex;
+  column-gap: 165px;        /* 단어 사이 간격 */
+}
+
+/* 단어 기본 스타일 */
+.venn-word {
+  font-size: 90px;          /* 🔸 숫자 그대로 */
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+  white-space: nowrap;      /* 단어 안에서 줄바꿈 안 되게 */
+  letter-spacing: -0.06em;
+}
+
+/* 강조 단어 (클릭 이후) */
+.venn-word.is-strong {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+/* 🔹 처음 로드 상태(pre-venn)에서는 strong도 얇게 보이게 */
+body.pre-venn .venn-word.is-strong {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 300;
+}
+
+/* ============================
+   줄(row) 전체에 좌우 오프셋
+   ============================ */
+
+.venn-row.row-1 {
+  padding-left: 0;
+}
+
+.venn-row.row-2 {
+  padding-left: 120px;
+}
+
+.venn-row.row-3 {
+  padding-left: 20px;
+}
+
+.venn-row.row-4 {
+  margin-left: -80px;
+}
+
+
+
+/* =========================
+   PLANNING HERO
+   ========================= */
+.ph-text-section {
+  width: 100%;
+  background: #f5f5f5;
+  padding-top: 150px;
+}
+
+.ph-container {
+  width: 100%;
+  margin-left: 150px; 
+}
+
+.ph-text { 
+  max-width: 1000px; 
+  color: #111; 
+}
+
+.ph-kicker {
+  display: block;
+  font-weight: 400;
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #EA4521;
+}
+.ph-title {
+  margin: 0 0 18px;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #111;
+  letter-spacing: -0.04em;
+}
+.ph-desc {
+  margin: 0;
+  color: #898989;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.ph-visual-section {
+  position: relative;
+  width: 100%;
+  background: #f5f5f5;
+  height: auto;
+  overflow: visible;
+}
+
+/* ✅ 2560 디자인 기준 캔버스 */
+.ph-visual-inner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 1100px;
+}
+
+
+.ph-visual-bg {
+  position: absolute;
+  margin-left: 150px; 
+  top: 150px;
+  right: 0%;
+  transform: translateX(0%);
+  z-index: 10;
+}
+.ph-visual-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ph-shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+
+/* =========================
+   PH-VISUAL : PILL REVEAL (기본 상태만)
+   ========================= */
+
+.ph-pill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  color: #111;
+  border-radius: 999px;
+  padding: var(--ph-pill-padding);
+  font-weight: 800;
+  font-size: 41px;
+  box-shadow: var(--ph-shape-shadow);
+
+  /* 시작 상태 (JS keyframe 0%랑 맞춤) */
+  opacity: 0;
+  transform: translate(-50%, -95%) scale(0.7);
+  filter: blur(6px);
+  will-change: transform, opacity, filter, box-shadow;
+}
+
+.ph-pill::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ph-accent);
+  margin-right: 12px;
+}
+
+/* 위치 값은 그대로 */
+.ph-pill--a { top: 250px; left: 1300px; min-width: 462px; }
+.ph-pill--b { top: 600px; left: 600px; min-width: 280px; }
+.ph-pill--c { top: 940px; left: 1870px; min-width: 280px; }
+
+/* 순서에 따른 딜레이는 JS에서 처리할 거라 CSS에선 제거함 */
+
+/* 모션 줄이기 설정 배려 */
+@media (prefers-reduced-motion: reduce) {
+  .ph-pill {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: none;
+    filter: none;
+    box-shadow: var(--ph-shape-shadow);
+  }
+}
+
+/* 모바일에서는 그냥 고정 (이미 쓰던 구조 유지) */
+@media (max-width: 1400px) {
+  .ph-visual-bg { top: 36vh; width: 92%; opacity: 0.08; }
+  .ph-shapes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .ph-pill {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    box-shadow: var(--ph-shape-small-shadow);
+    animation: none;
+    filter: none;
+  }
+}
+
+
+/* =========================
+   P-BG2 TEXT ON IMAGE
+   ========================= */
+.p-bg2--img { 
+  position: relative; 
+  width: 100%; 
+  display: block; 
+}
+
+.p-bg2__img { 
+  width: 100%; 
+  height: auto; 
+  display: block; 
+}
+
+.p-bg2__text {
+  position: absolute;
+  top: 150px;
+  left:150px; 
+  color: #000;
+  max-width: 100%;
+}
+.p-bg2__text h2 {
+  font-size: 50px;
+  margin: 0;
+  line-height: 1.25;
+  font-weight: 700;
+}
+.p-bg2__text .accent { color: var(--accent); }
+.p-bg2__text p {
+  margin-top: 15px;
+  margin-left: 25px;
+  font-size: 28px;
+  color: rgba(0,0,0,0.8);
+  font-weight: 300;
+}
+
+@media (max-width: 900px) {
+  .p-bg2__text { top: 6vh; left: 5vw; max-width: 86vw; }
+  .p-bg2__text h2 { font-size: 20px; }
+}
+
+/* =========================
+   INFO BOX DECOR ROTATION
+   ========================= */
+@keyframes decoRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.info-box .box-deco {
+  animation: decoRotate 18s linear infinite;
+  transform-origin: center;
+}
+
+/* =========================
+   PLANNING SCROLL REVEAL
+   ========================= */
+.ph-text-section2,
+.info-box {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.ph-text-section2.is-visible,
+.info-box.is-visible {
+  animation: planningFadeUp 0.5s ease-out forwards;
+}
+
+/* 카드 순차 딜레이 */
+.cards-row .info-box.is-visible:nth-child(1) { animation-delay: 0.1s; }
+.cards-row .info-box.is-visible:nth-child(2) { animation-delay: 0.3s; }
+.cards-row .info-box.is-visible:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes planningFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-text-section2,
+  .info-box {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================
+   PLANNING GRAPH TEXT SCROLL REVEAL
+   ========================= */
+.ps-left {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.ps-left.is-visible {
+  animation: planningFadeUp2 0.5s ease-out forwards;
+}
+@keyframes planningFadeUp2 {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ps-left {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+/* =========================
+   PLANNING-VENN ANIMATION
+   ========================= */
+
+/* venn-right가 활성화될 때 원 등장 */
+#planning-venn .venn-right.is-active .circle-left {
+  animation: vennCirclePopLeft 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+#planning-venn .venn-right.is-active .circle-right {
+  animation: vennCirclePopRight 1.2s cubic-bezier(.2,.8,.2,1) 0.12s forwards;
+}
+
+/* 왼쪽 원: 슥 커지면서 살짝 위로 갔다가 내려오기 */
+@keyframes vennCirclePopLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-90%) translateY(18px) scale(0.96);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(-90%) translateY(-4px) scale(1.01);  /* 살짝 위 + 살짝 크게 */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-90%) translateY(0) scale(1);        /* 제자리 안착 */
+  }
+}
+
+/* 오른쪽 원: 같은 모션, X만 -10% */
+@keyframes vennCirclePopRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%) translateY(18px) scale(0.96);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(-10%) translateY(-4px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-10%) translateY(0) scale(1);
+  }
+}
+
+
+/* 화살표 기본 상태 */
+#planning-venn .venn-right::before,
+#planning-venn .venn-right::after {
+  opacity: 0;
+}
+
+/* 왼쪽 화살표 → 오른쪽으로 콕콕 (더 늦게 등장) */
+#planning-venn .venn-right.is-active::before {
+  animation: arrowPokeRight 1.25s ease-out 0.55s forwards;
+}
+
+/* 오른쪽 화살표 → 왼쪽으로 콕콕 (더 늦게 등장) */
+#planning-venn .venn-right.is-active::after {
+  animation: arrowPokeLeft 1.25s ease-out 0.55s forwards;
+}
+
+/* 오른쪽으로 꽤 강하게 콕! */
+@keyframes arrowPokeRight {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-22px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(26px);
+  }
+  55% {
+    transform: translateY(-50%) translateX(-12px);
+  }
+  80% {
+    transform: translateY(-50%) translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* 왼쪽으로 강하게 콕! */
+@keyframes arrowPokeLeft {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(22px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-26px);
+  }
+  55% {
+    transform: translateY(-50%) translateX(12px);
+  }
+  80% {
+    transform: translateY(-50%) translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+
+/* 모션 줄이기 설정인 사람 배려 */
+@media (prefers-reduced-motion: reduce) {
+  #planning-venn .circle-left {
+    opacity: 1 !important;
+    transform: translateX(-90%) translateY(0) scale(1) !important;
+    animation: none !important;
+  }
+  #planning-venn .circle-right {
+    opacity: 1 !important;
+    transform: translateX(-10%) translateY(0) scale(1) !important;
+    animation: none !important;
+  }
+  #planning-venn .venn-right::before,
+  #planning-venn .venn-right::after {
+    opacity: 1 !important;
+    transform: translateY(-50%) translateX(0) !important;
+    animation: none !important;
+  }
+}

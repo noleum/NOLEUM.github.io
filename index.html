@@ -5,299 +5,553 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NOL:EUM</title>
   <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@2.1.2/css/SpoqaHanSansNeo.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="planning.css">
+  <link rel="stylesheet" href="design.css">
+  <link rel="stylesheet" href="process.css">
+  <link rel="stylesheet" href="video.css">
+  <link rel="stylesheet" href="introduction.css">
 </head>
 <body>
-
-  <div class="progress" id="progress"></div>
-
   <header class="header" role="banner">
-    <div class="logo" aria-label="사이트 로고">로고</div>
+    <div class="logo" aria-label="한글버전">ㅎㄱ</div>
     <nav aria-label="섹션 내비게이션">
-      <a class="nav__link" href="#overview">OVERVIEW</a>
-      <a class="nav__link" href="#planning">PLANNING</a>
-      <a class="nav__link" href="#design">DESIGN</a>
-      <a class="nav__link" href="#typography">PROCESS</a>
-      <a class="nav__link" href="#video">VIDEO</a>
-      <!-- <a class="nav__link" href="#team">TEAM</a> -->
+      <a class="nav__link" href="#promoVideo">홍보영상</a> 
+      <a class="nav__link" href="#planning">기획</a>
+      <a class="nav__link" href="#design">디자인</a>
+      <a class="nav__link" href="#process">작업 과정</a>
+      <a class="nav__link" href="#introduction">팀소개</a>
     </nav>
-  </header>
+  </header> <!-- /header -->
+
+  <div id="scale-wrap">
 
 <main>
   <!-- 키비주얼 -->
-  <section id="key-visual">
+  <section id="key-visual" data-section class="section-dark">
     <img class="kv-bg" src="img/bg1.png" alt="배경이미지" />
     <img class="kv-logo" src="img/logo1.png" alt="로고이미지" />
-  </section>
-</main>
+    <div class="kv-text"><p>Korea to the World, Let’s Play Tradition</p></div>
+  </section> <!-- /#key-visual -->
+
+  <section id="video-section" data-section class="section-dark"> 
+  <div class="v-text">
+    <h2 class="v-p">홍보영상</h2>
+  </div>
+  <div class="video_inner">
+    <video id="promoVideo" muted loop playsinline preload="auto" controls> 
+      <source src="video/video.mp4" type="video/mp4">
+      </video>
+  </div>
+</section> <!-- /#video-section -->
+
+<!-- ======================
+     PLANNING - Cards + Graph + Venn
+     ====================== -->
+
+<section class="planning" id="planning" data-section class="section-dark">
+  <div class="planning-inner">
+
+    <!-- 1) 개요 텍스트 (왼쪽 단독) -->
+    <div class="planning-overview2 reveal-text">
+      <p class="pp-kicker2">개요</p>
+      <h2 class="pp-title2">전통의 흥, 지금의 K-문화로 이어지다</h2>
+      <p class="pp-desc2">
+        예로부터 우리 민족은 놀이와 연희를 통해 공동체를 하나로 이어왔습니다. <br>
+        그 신명과 흥의 정신은 오늘날 K-문화로 확장되었으며, ‘놀음’은 이를 현대적으로 
+        재해석해 인터랙티브 미디어월로 새롭게 체험할 수 있도록 기획되었습니다.
+      </p>
+    </div>
+
+  <div class="orbit-c">
+    <!-- 2) 곡선 라인 -->
+    <div class="planning-curve reveal-text"></div>
+
+    <!-- 3) 문양 + 오렌지 원 (오른쪽 아래 단독 블록) -->
+    <div class="planning-orbits">
+      
+      <figure class="orbit">
+        <img src="img/ov1.png" class="orbit-bg">
+        <figcaption>
+          <div class="orbit-label-main">비석치기</div>
+          <div class="orbit-core">
+            <span class="orbit-k">K-POP</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="orbit">
+        <img src="img/ov2.png" class="orbit-bg">
+        <figcaption>
+          <div class="orbit-label-main">쥐불놀이</div>
+          <div class="orbit-core">
+            <span class="orbit-k">K-Movie</span>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="orbit">
+        <img src="img/ov3.png" class="orbit-bg">
+        <figcaption>
+          <div class="orbit-label-main">제기차기</div>
+          <div class="orbit-core">
+            <span class="orbit-k">K-Drama</span>
+          </div>
+        </figcaption>
+      </figure>
+          <div class="orbit-label-top">전통놀이</div>
+          <span class="orbit-tag">K-Culture</span>
+    </div>
+</div>
+
+    <!-- 🔹 두 번째 설명 블록 (그대로 둠) -->
+    <div class="ph-text-section2 reveal-text">
+      <div class="ph-text2">
+        <h2 class="ph-title2">K-문화의 글로벌 확산</h2>
+        <p class="ph-desc2">
+          K-문화는 문화 산업을 넘어 경제와 관광으로 확산되고 있으며, 정부는 2027년까지 K-콘텐츠
+          매출 200조 원, 수출 250억 달러, 일자리 74만 명 창출을 목표로 다양한 지원을 강화하고 있다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 🔹 기존 카드 3개 (그대로) -->
+    <div class="cards-row" role="list">
+      <article class="info-box box-left" role="listitem">
+        <div class="info-body">
+          <span class="idx">01</span>
+          <h3>커지는 케데헌 열풍</h3>
+          <p class="muted">서울시, 외국인 관광객 역대 최대</p>
+          <p class="desc">‘케데헌’ 열풍에 힘 입어 서울을 찾는 외국인 관광객이 급증했다. 
+            특히 애니메이션의 인기가 높아지면서 7월 서울을 방문한 외국인 관광객 수는 전년 
+            동기 대비  23% 증가한 136만 명을 기록하며 역대 최대치를 달성했다.</p>
+        </div>
+        <img class="box-deco" src="img/planning1.png" alt="">
+      </article>
+
+      <article class="info-box box-center" role="listitem">
+        <div class="info-body">
+          <span class="idx">02</span>
+          <h3>오징어 게임 인기</h3>
+          <p class="muted">‘전통놀이’ 역풍</p>
+          <p class="desc">넷플릭스 ‘오징어게임2’ 공개 이후, 극 중에 등장한 비석치기와 
+            공기놀이 등 한국의 전통놀이가 다시금 전 세계적인 관심을 받았다. 전통놀이를 
+            새로운 시각으로 즐기는 해외 팬들이 늘어나며, 한국의 놀이문화가 글로벌 트렌드로 
+            확산되는 계기가 됐다.</p>
+        </div>
+        <img class="box-deco" src="img/planning2.png" alt="">
+      </article>
+
+      <article class="info-box box-right" role="listitem">
+        <div class="info-body">
+          <span class="idx">03</span>
+          <h3>박물관 관람객 몰리다</h3>
+          <p class="muted">K-박물관 열풍</p>
+          <p class="desc">‘국중박'에 대기줄이 생길 정도로 K-박물관 열풍 확산했다. 
+            K-팝과 K-드라마의 세계적 성공에 이어, 한국의 전통문화까지 주목받으며 
+            ‘K-전통’의 인기가 빠르게 상승 전통 의상과 예절, 놀이등 다양한 전통 요소들이 
+            새로운 한류 콘텐츠로 관심이 크다.</p>
+        </div>
+        <img class="box-deco" src="img/planning3.png" alt="">
+      </article>
+    </div> <!-- /.cards-row -->
+
+  </div> <!-- /.planning-inner -->
+</section> <!-- /.planning (#planning) -->
+</main> <!-- /main (키비주얼 래핑) -->
 
 
 
 
-<!-- ===== OVERVIEW ===== -->
-<section id="overview" data-section>
-  <!-- 인트로 텍스트 -->
-  <div class="overview_inner">
-    <h1>
-      박물관의 전통놀이 오브젝트를 <br>
-      인터랙티브 미디어월로 <br>
-      체험할 수 있도록 기획되었습니다.
-    </h1>
+
+
+<section class="planning-split" aria-labelledby="planning-heading" data-section class="section-dark" role="region">
+      
+  <div class="ps-left reveal-text">
+    <h6 class="ps-kicker2">시장조사</h6>
+    <h2>전통문화 관련 관광·소비 전년 대비 증가율 (%)</h2>
     <p>
-      관람객이 박물관 오브젝트를 선택해 조선시대·근현대로 이동, 전통놀이를 체험하고<br>
-      다시 돌아오며 ‘놀이로 시대를 연결’하는 참여형 인터랙티브 미디어월 콘텐츠
+      단순히 '보는 한국'이 아닌 직접 체험하고 느끼는 한국을 원하는 시대
+      명소를 수동적으로 둘러보는 관람에서 벗어나, 한국인의 '노는 방식' 자체를 경험
+      하려는 수요가 빠르게 증가하고 있다.
     </p>
   </div>
 
-  <!-- 이미지 -->
-  <div class="overview_image">
-    <img class="ov-bg" src="img/ov1.png" alt="전통놀이 관련 이미지" />
+  <div class="ps-right" aria-describedby="planning-heading">
+    <div class="bars" role="list">
+      <div class="bar" data-value="155" role="listitem">
+        <div class="bar-caption">DMZ 관광 상품 예약</div>
+        <div class="bar-shape">
+          <span class="bar-value">
+            <span class="bar-num">0</span>
+            <span class="bar-unit">%</span>
+          </span>
+        </div>
+        <div class="bar-sub">Increase</div>
+      </div>
+
+      <div class="bar" data-value="200" role="listitem">
+        <div class="bar-caption">국립중앙박물관 방문객</div>
+        <div class="bar-shape">
+          <span class="bar-value">
+            <span class="bar-num">0</span>
+            <span class="bar-unit">%</span>
+          </span>
+        </div>
+        <div class="bar-sub">Increase</div>
+      </div>
+
+      <div class="bar" data-value="280" role="listitem">
+        <div class="bar-caption">박물관 굿즈 매장 매출</div>
+        <div class="bar-shape">
+          <span class="bar-value">
+            <span class="bar-num">0</span>
+            <span class="bar-unit">%</span>
+          </span>
+        </div>
+        <div class="bar-sub">Rising</div>
+      </div>
+
+      <div class="bar" data-value="2113" role="listitem">
+        <div class="bar-caption">노리개 만들기 클래스 예약</div>
+        <div class="bar-shape">
+          <span class="bar-value">
+            <span class="bar-num">0</span>
+            <span class="bar-unit">%</span>
+          </span>
+        </div>
+        <div class="bar-sub">Skyrocketing</div>
+      </div>
+    </div>
   </div>
+</section>
+
+
+
+<!-- 3) PLANNING-VENN: 기획 -->
+<section id="planning-venn" class="planning-venn" data-section class="section-dark" aria-labelledby="venn-heading" role="region">
+  <!-- 상단 설명 텍스트 -->
+  <section class="ph-container3 reveal-text">
+    <div class="ph-kicker3">한계점</div>
+    <h2 class="ph-title3" id="venn-heading">전통문화 체험의 한계</h2>
+    <p class="ph-desc3">
+      여전히 전통문화를 체험하는 방식에는 여러 한계가 존재합니다.
+    </p>
+  </section>
+
+  <!-- 토글 버튼 -->
+  <div class="venn-toggle-wrap">
+    <button type="button" class="venn-tab is-active" data-target="folk">민속촌</button>
+    <button type="button" class="venn-tab" data-target="museum">박물관</button>
+  </div>
+
+  <!-- 단어 클라우드 영역 -->
+  <div class="venn-panel">
+    <div class="venn-panel-inner">
+      <div class="venn-box">
+
+        <!-- ✅ 민속촌 단어 세트 -->
+        <div class="venn-words is-active" data-name="folk">
+          <!-- 1줄 -->
+          <div class="venn-row row-1">
+            <span class="venn-word">자금/예산 부족</span>
+            <span class="venn-word">전시중심</span>
+            <span class="venn-word">확장성 문제</span>
+            <span class="venn-word">제한된 몰입</span>
+            <span class="venn-word">제한된 몰입</span>
+          </div>
+
+          <!-- 2줄 -->
+          <div class="venn-row row-2">
+            <span class="venn-word">데이터 수집</span>
+            <span class="venn-word is-strong">장소 제약</span>
+            <span class="venn-word">시장 이해 부족</span>
+            <span class="venn-word">재정 불안정</span>
+            <span class="venn-word">관계적</span>
+          </div>
+
+          <!-- 3줄 -->
+          <div class="venn-row row-3">
+            <span class="venn-word">단기성</span>
+            <span class="venn-word is-strong">소품 관리 한계</span>
+            <span class="venn-word">체험 부족</span>
+            <span class="venn-word">재방문 유인 부족</span>
+            <span class="venn-word">참여의 피동성</span>
+          </div>
+
+          <!-- 4줄 -->
+          <div class="venn-row row-4">
+            <span class="venn-word">자금/예산 부족</span>
+            <span class="venn-word">고증 부족</span>
+            <span class="venn-word">일회성</span>
+            <span class="venn-word is-strong">유지 보수 한계</span>
+            <span class="venn-word">기술력 한계</span>
+          </div>
+        </div>
+
+        <!-- ✅ 박물관 단어 세트 -->
+        <div class="venn-words" data-name="museum">
+          <!-- 1줄 -->
+          <div class="venn-row row-1">
+            <span class="venn-word">자금/예산 부족</span>
+            <span class="venn-word is-strong">전시중심</span>
+            <span class="venn-word">확장성 문제</span>
+            <span class="venn-word is-strong">제한된 몰입</span>
+            <span class="venn-word">제한된 몰입</span>
+          </div>
+
+          <!-- 2줄 -->
+          <div class="venn-row row-2">
+            <span class="venn-word">데이터 수집</span>
+            <span class="venn-word">장소 제약</span>
+            <span class="venn-word">시장 이해 부족</span>
+            <span class="venn-word">재정 불안정</span>
+            <span class="venn-word">관계적</span>
+          </div>
+
+          <!-- 3줄 -->
+          <div class="venn-row row-3">
+            <span class="venn-word">단기성</span>
+            <span class="venn-word">소품 관리 한계</span>
+            <span class="venn-word is-strong">체험 부족</span>
+            <span class="venn-word">재방문 유인 부족</span>
+            <span class="venn-word">참여의 피동성</span>
+          </div>
+
+          <!-- 4줄 -->
+          <div class="venn-row row-4">
+            <span class="venn-word">자금/예산 부족</span>
+            <span class="venn-word">고증 부족</span>
+            <span class="venn-word">일회성</span>
+            <span class="venn-word">유지 보수 한계</span>
+            <span class="venn-word">기술력 한계</span>
+          </div>
+        </div>
+
+      </div><!-- /.venn-box -->
+    </div><!-- /.venn-panel-inner -->
+  </div><!-- /.venn-panel -->
+</section><!-- /#planning-venn -->
+
+
+
+<!-- ░░░ PLANNING : TEXT SECTION (위쪽) ░░░ -->
+<section class="ph-text-section" data-section class="section-light">
+  <div class="ph-container reveal-text">
+    <div class="ph-text">
+      <p class="ph-kicker">해결책</p>
+      <h2 class="ph-title">
+        전통문화의 새로운 경험 방식을 제안하다<br>
+        몸으로 느끼고 참여하는 몰입형 체험을 선보입니다
+      </h2>
+
+      <p class="ph-desc">
+        기존의 한계를 넘어, 전통문화를 단순히 '보는 것'이 아닌
+        직접 참여하고 느낄 수 있는 몰입형 체험 콘텐츠로 재해석했습니다.
+        키넥트를 기반으로 한 미디어월과 결합하여 관람자의 동작을 인식하고,
+        몸의 움직임이 곧 놀이가 되는 새로운 형태의 인터랙티브 체험을 제공합니다.
+      </p>
+    </div>
+  </div>
+<!-- /section.ph-text-section (열림 유지, 아래에서 닫힘) -->
 
   
-  <!-- 텍스트 -->
-  <div class="overview_inner">
-    <h1>K-문화의 글로벌 확산</h1>
-    <p>
-      K-문화는 문화 산업을 넘어 경제와 관광으로 확산되고 있으며,
-      정부는 2027년까지 K-콘텐츠 <br>매출 200조 원, 수출 250억 달러,
-      일자리 74만 명 창출을 목표로 다양한 지원을 강화하고 있다.
-    </p>
-  </div>
+<!-- ░░░ PLANNING : VISUAL SECTION (아래쪽 - 배경 이미지 + 도형들) ░░░ -->
+<section class="ph-visual-section" aria-hidden="true">
+  <div class="ph-visual-inner ph-container">
 
-  <!-- 카드 3개 -->
-  <div class="overview_cards">
-    <div class="overview_card">
-      <img src="img/overview1.png" alt="아이콘1" class="overview_icon" />
-      <span class="num">01</span>
-      <h3>커지는 케데헌 열풍</h3>
-      <p class="sub">서울시 외국인 관광객 역대 최대</p>
-      <p class="desc">
-        ‘케데한’ 열풍에 힘입어 서울을 찾는 외국인 관광객이 급증했다.
-        특히 더메이슨의 인기가 높아지면서 7월 서울을 방문한 외국인 관광객 수는
-        전년 동기 대비 23% 증가한 130만 명을 기록하며 역대 최대를 달성했다.
-      </p>
+    <!-- 🔹 Background image (핑크 타이포) -->
+    <div class="ph-visual-bg">
+      <img src="img/p_bg1.png" alt="Decorative planning background"/>
     </div>
 
-    <div class="overview_card">
-      <img src="img/overview2.png" alt="아이콘2" class="overview_icon" />
-      <span class="num">02</span>
-      <h3>오징어 게임 인기</h3>
-      <p class="sub">"전통놀이" 열풍</p>
-      <p class="desc">
-        ‘오징어게임’ 공개 이후 비석치기·공기놀이 등 한국 전통놀이가 전 세계적 관심을 받았다.
-        전통놀이를 새로운 시각으로 즐기는 여행 콘텐츠가 유행하면서 글로벌 트렌드로 확산되는 계기가 됐다.
-      </p>
+    <!-- 🔹 Pills (도형) -->
+    <div class="ph-shapes">
+      <div class="ph-pill ph-pill--a">전통문화의 디지털화</div>
+      <div class="ph-pill ph-pill--b">현대적 재해석</div>
+      <div class="ph-pill ph-pill--c">관람자 참여 중심</div>
     </div>
 
-    <div class="overview_card">
-      <img src="img/overview3.png" alt="아이콘3" class="overview_icon" />
-      <span class="num">03</span>
-      <h3>궁중박 관람객 몰리다</h3>
-      <p class="sub">K-박물관 열풍</p>
-      <p class="desc">
-        ‘국중박’에 대기줄이 생길 정도로 K-박물관 열풍이 확산됐다.
-        K-팝과 K-드라마의 세계적 성공에 이어, 한국의 의복·음식·예절·놀이 등
-        다양한 전통 요소들이 새로운 한류 콘텐츠로 관심이 크다.
-      </p>
-    </div>
+  </div>
+</section> <!-- /.ph-visual-section -->
+
+<section class="p-bg2--img" data-section class="section-light">
+  <img src="img/p_bg2.png" alt="decorative bg" class="p-bg2__img">
+  <div class="p-bg2__text reveal-text">
+    <h2>"<span class="accent">키넥트</span>와 <span class="accent">미디어월</span>
+      을 활용해 전통문화 체험의 <span class="accent">한계점을 극복</span>"</h2>
+    <p>한국 전통놀이를 몰입감 있게 즐길 수 있는 인터랙티브 콘텐츠 제작</p>
   </div>
 
-</section>
-
-
-    <!-- PLANNING -->
-    <section id="planning">
-  <div class="planning_text">
-    <h1>PLANNING</h1>
-  </div>
-
-<section class="reviews">
-  <div class="reviews__inner">
-    <!-- 1 : 왼쪽 배치 + 기본 폭(clamp) -->
-    <article class="review review--left">
-      <img class="review__avatar" src="img/planning1.png" alt="" />
-      <div class="review__body">
-        <header class="review__head">
-          <strong class="review__name">정재훈</strong>
-          <span class="review__meta">20대 초반 대학생</span>
-        </header>
-        <p class="review__text">
-          전통놀이 알기는 아는데 해본적은 대부분 없는거같아요.<br>
-          무슨 전통놀이가 있는지도 잘모르고요,
-          <b class="hl">쉽게 접할 수 있었으면</b> 재밌게 즐겼을거 같네요.
-        </p>
-      </div>
-    </article>
-
-    <!-- 2 : 오른쪽 배치 + 폭 640 + 살짝 오른쪽으로 이동 -->
-    <article class="review review--right">
-      <img class="review__avatar" src="img/planning2.png" alt="" />
-      <div class="review__body">
-        <header class="review__head">
-          <strong class="review__name">정재훈</strong>
-          <span class="review__meta">20대 초반 대학생</span>
-        </header>
-        <p class="review__text">
-          전통놀이 알기는 아는데 해본적은 대부분 없는거같아요.<br>
-          무슨 전통놀이가 있는지도 잘모르고요,
-          <b class="hl">쉽게 접할 수 있었으면</b> 재밌게 즐겼을거 같네요.
-        </p>
-      </div>
-    </article>
-
-    <!-- 3 : 왼쪽 배치 + 기본 폭(clamp) -->
-    <article class="review review--left">
-      <img class="review__avatar" src="img/planning3.png" alt="" />
-      <div class="review__body">
-        <header class="review__head">
-          <strong class="review__name">정재훈</strong>
-          <span class="review__meta">20대 초반 대학생</span>
-        </header>
-        <p class="review__text">
-          전통놀이 알기는 아는데 해본적은 대부분 없는거같아요.<br>
-          무슨 전통놀이가 있는지도 잘모르고요,
-          <b class="hl">쉽게 접할 수 있었으면</b> 재밌게 즐겼을거 같네요.
-        </p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="project_bg">
-  <div class="project_bg_inner">
-    <!-- 위쪽 도트 장식 -->
-    <div class="project_dots"></div>
-
-    <div class="project_box">
-      <div class="project_label">프로젝트 배경</div>
-      <div class="project_card">
-        <p class="subtext">
-          K-문화를 사랑하며, 한국의 전통 역사와 놀이를 새롭게 재해석하고 싶어하는 젊은 글로벌 세대 증가
-        </p>
-        <h3 class="maintext">
-          “인터랙티브 미디어 콘텐츠로 즐기는 전통놀이의 디지털 재해석 진행”
-        </h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="intro_section">
-  <div class="intro_inner">
-    <!-- 왼쪽 텍스트 -->
-    <div class="intro_text">
-      <h2>사라져가는 전통놀이의 디지털 재해석, 흥으로 잇는 세대 간 연결</h2>
-      <p>
-        박물관 로비 속 오브젝트를 선택하면 조선, 근현대, 논밭 등 다양한 공간으로 이동하며
-        잊혀가<br>는 전통놀이를 가상으로 체험한다. 관람자는 단순 관람을 넘어 놀이 속 리듬과 즐거움을 경험<br>하며,
-        세대 간 전통문화의 연결을 느낄 수 있다. 디지털 기술로 재해석된 전통 ‘흥’은 현대적 감<br>각과 어우러져,
-        과거와 현재를 잇는 새로운 문화 체험을 제공한다.
-      </p>
-    </div>
-
-    <!-- 오른쪽 이미지 -->
-    <div class="intro_image">
-      <img src="img/planning4.png" alt="" />
-    </div>
-  </div>
-</section>
-
-
-
-</section>
+</section> <!-- /.p-bg2--img -->
+</section> <!-- /section.ph-text-section (위쪽 텍스트 섹션 닫힘) -->
 
     <!-- DESIGN -->
-    <section id="design" data-section>
-      <!-- DESIGN 섹션 안 원하는 위치에 -->
-      <div class="design-badge">
-        <span>3D 디자인</span>
-      </div>
+    <section id="design" data-section data-section class="section-dark">
+        <!-- DESIGN 섹션 글 시작 -->
+      <section class="d-content ">
+        <div class="ph-text4 reveal-text">
+        <p class="ph-kicker4">디자인</p>
+        <h2 class="ph-title4">기억 속으로의 몰입, 전통놀이의 재해석</h2>
+        <p class="ph-desc4">과거의 골목과 전통 공간을 디지털로 재구성하여, 익숙한 풍경 속에서 전통놀<br>
+          이를 새롭게 체험할 수 있는 몰입형 인터랙티브 전시 공간을 구현했습니다.
+        </p>
+        </div>
+      </section>
 
-<section class="design-split">
+<section class="design-split" data-section class="section-dark">
   <!-- 1번째 줄 -->
   <div class="split_row">
     <div class="split_left">
-      <img src="img/design1.png" alt="디자인 이미지 1" />
+      <video
+        src="video/Lobby_JegiPick.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
     <div class="split_right">
-      <img src="img/design2.png" alt="디자인 이미지 2" />
+      <video
+        src="video/Lobby_Fire.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
   </div>
 
   <!-- 2번째 줄 -->
   <div class="split_row">
     <div class="split_left">
-      <img src="img/design3.png" alt="디자인 이미지 3" />
+      <video
+        src="video/Alley_MoveFirst.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
     <div class="split_right">
-      <img src="img/design4.png" alt="디자인 이미지 4" />
+      <video
+        src="video/Alley_MoveSecond.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
   </div>
 
   <!-- 3번째 줄 -->
   <div class="split_row">
     <div class="split_left">
-      <img src="img/design5.png" alt="디자인 이미지 5" />
+      <video
+        src="video/Joseon_OpenDoor.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
     <div class="split_right">
-      <img src="img/design6.png" alt="디자인 이미지 6" />
+      <video
+        src="video/Joseon_CameraMove.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+      ></video>
     </div>
   </div>
 </section>
 
-      <div class="design-badge">
-        <span>현대</span>
-      </div>
 
-<section class="design-split2">
-  <div class="split_row">
-    <div class="split_left">
-      <img src="img/design7.png" alt="" />
-    </div>
-    <div class="split_right">
-      <img src="img/design8.png" alt="" />
+</section> <!-- /#design -->
+
+<section id="process" data-section class="section-dark">
+  <section class="process-title">
+    <p class="ph-kicker5">작업과정</p>
+    <h2 class="ph-title5">모델링 과정</h2>
+  </section>
+
+  <div class="process-grid">
+    <!-- 1줄: col 1, 2 -->
+    <figure class="process-item">
+      <img src="img/design7.png" alt="">
+    </figure>
+    <figure class="process-item">
+      <img src="img/design8.png" alt="">
+    </figure>
+
+    <!-- 2줄: col 2, 3 -->
+    <figure class="process-item">
+      <img src="img/design9.png" alt="">
+    </figure>
+    <figure class="process-item">
+      <img src="img/design10.png" alt="">
+    </figure>
+
+    <!-- 3줄: col 1, 2 -->
+    <figure class="process-item">
+      <img src="img/design11.png" alt="">
+    </figure>
+    <figure class="process-item">
+      <img src="img/design12.png" alt="">
+    </figure>
+  </div>
+
+
+    <section class="process-title2">
+    <h2 class="ph-title5">3D 오브젝트</h2>
+  </section>
+
+<div class="process-marquee is-ltr">
+    <div class="process-track">
+      <!-- 1세트 (3d1 ~ 3d15) -->
+      <img src="img/3d1.png"  alt="" class="pm-img">
+      <img src="img/3d2.png"  alt="" class="pm-img">
+      <img src="img/3d3.png"  alt="" class="pm-img">
+      <img src="img/3d4.png"  alt="" class="pm-img">
+      <img src="img/3d5.png"  alt="" class="pm-img">
+      <img src="img/3d6.png"  alt="" class="pm-img">
+      <img src="img/3d7.png"  alt="" class="pm-img">
+      <img src="img/3d8.png"  alt="" class="pm-img">
+      <img src="img/3d9.png"  alt="" class="pm-img">
+      <img src="img/3d10.png" alt="" class="pm-img">
+      <img src="img/3d11.png" alt="" class="pm-img">
+      <img src="img/3d12.png" alt="" class="pm-img">
+      <img src="img/3d13.png" alt="" class="pm-img">
+      <img src="img/3d14.png" alt="" class="pm-img">
+      <img src="img/3d15.png" alt="" class="pm-img">
+
+      <!-- 2세트 (무한루프용 복제) -->
+      <img src="img/3d1.png"  alt="" class="pm-img">
+      <img src="img/3d2.png"  alt="" class="pm-img">
+      <img src="img/3d3.png"  alt="" class="pm-img">
+      <img src="img/3d4.png"  alt="" class="pm-img">
+      <img src="img/3d5.png"  alt="" class="pm-img">
+      <img src="img/3d6.png"  alt="" class="pm-img">
+      <img src="img/3d7.png"  alt="" class="pm-img">
+      <img src="img/3d8.png"  alt="" class="pm-img">
+      <img src="img/3d9.png"  alt="" class="pm-img">
+      <img src="img/3d10.png" alt="" class="pm-img">
+      <img src="img/3d11.png" alt="" class="pm-img">
+      <img src="img/3d12.png" alt="" class="pm-img">
+      <img src="img/3d13.png" alt="" class="pm-img">
+      <img src="img/3d14.png" alt="" class="pm-img">
+      <img src="img/3d15.png" alt="" class="pm-img">
     </div>
   </div>
 </section>
 
-            <div class="design-badge">
-        <span>근현대</span>
-      </div>
-<section class="design-split2">
-  <div class="split_row">
-    <div class="split_left">
-      <img src="img/design9.png" alt="" />
-    </div>
-    <div class="split_right">
-      <img src="img/design10.png" alt="" />
-    </div>
-  </div>
-</section>
 
-            <div class="design-badge">
-        <span>조선시대</span>
-      </div>
-<section class="design-split2">
-  <div class="split_row">
-    <div class="split_left">
-      <img src="img/design11.png" alt="" />
-    </div>
-    <div class="split_right">
-      <img src="img/design12.png" alt="" />
-    </div>
-  </div>
-</section>
-
-            <div class="design-badge">
-        <span>3D 오브젝트</span>
-      </div>
-</section>
-<section id="design-gallery" class="gallery-hero">
+<section id="design-gallery" class="gallery-hero" data-section class="section-dark">
   <figure class="gh-item">
     <img src="img/design1-1.png" alt="">
-    <figcaption>
+    <figcaption class="reveal-text">
       <h3>현대</h3>
       <p>현대 박물관에 전시된 오브젝트를 선택하여 조선시대와 근현대 전통놀이 <br>
         체험 공간으로 이동 할 수 있는 인터랙티브 게이트웨이입니다.</p>
@@ -306,7 +560,7 @@
 
   <figure class="gh-item">
     <img src="img/design1-2.png" alt="">
-    <figcaption>
+    <figcaption class="reveal-text">
       <h3>근현대</h3>
       <p>정겨운 근현대 골목길 분위기 속에서 전통놀이 <br>
         제기차기를 체험하며 즐길 수 있는 공간입니다.</p>
@@ -315,7 +569,7 @@
 
   <figure class="gh-item">
     <img src="img/design1-3.png" alt="">
-    <figcaption>
+    <figcaption class="reveal-text">
       <h3>조선시대</h3>
       <p>조선시대의 기와집 배경 속에서 전통놀이의 비석치기를 <br>
         배워보고 즐길 수 있는 인터랙티브 체험 공간입니다.</p>
@@ -324,212 +578,357 @@
 
   <figure class="gh-item">
     <img src="img/design1-4.png" alt="">
-    <figcaption>
+    <figcaption class="reveal-text">
       <h3>논밭</h3>
       <p>정월대보름 밤의 논밭을 배경으로, 풍년을 기원했던 전통놀이, <br>
         쥐불놀이를 안전하게 체험하며 즐거움을 나눌 수 있는 공간입니다.</p>
     </figcaption>
   </figure>
-</section>
+</section> <!-- /#design-gallery -->
 
 
-
-      </section>
-
-      <section id="typography" data-section>
-<!-- ===== TYPOGRAPHY HERO (scoped) ===== -->
+<section id="typography" data-section class="section-light">
 <section class="typo-hero" aria-labelledby="typo-hero-title">
-  <!-- 상단 장식 3개 : 왼쪽 1, 오른쪽 2 -->
-  <div class="typo-hero-orn" aria-hidden="true">
-    <img class="orn-l" src="img/typo1.png" alt="">
-    <div class="orn-r">
-      <img class="orn-r1" src="img/typo2.png" alt="">
-      <img class="orn-r2" src="img/typo3.png" alt="">
-    </div>
-  </div>
 
-  <!-- 섹션 타이틀 -->
-  <h3 id="typo-hero-title" class="typo-hero-kicker">서체 디자인</h3>
+   <h3 id="typo-hero-title" class="typo-hero-kicker">서체 디자인</h3>
 
-  <!-- 본문 : 좌 설명 / 우 큰 타이틀 -->
-  <div class="typo-hero-body">
-    <div class="typo-hero-left">
-      <article class="typo-para">
-        <h5>국문 전용서체</h5>
-        <p>
-          깔끔하고 가독성이 뛰어난 서체로, 화면에서<br>
-          읽기 편하며 현대적인 감각을 전합니다. 디<br>
-          지털 콘텐츠에서 안정적인 리듬감을 주어 전통<br>
-          놀이의 친근하고 따뜻한 분위기를 표현합니다.
-        </p>
-      </article>
-      <article class="typo-para">
-        <h5>영문 전용서체</h5>
-        <p>
-          단정하고 세련된 인상을 주는 산세리프체로, <br>
-          다양한 굵기와 안정된 비례감을 통해 콘텐츠의 <br>
-          완성도를 높여줍니다. 현대적 감각과 전통 해석이라<br>
+   <div class="typo-hero-body">
+       <!-- 왼쪽 1 행 -->
+       <article class="typo-para para-1 reveal-text">
+         <h5>국문 전용서체</h5>
+         <p>
+            깔끔하고 가독성이 뛰어난 서체로, 화면에서
+            읽기 편하며 현대적인 감각을 전합니다. 디지털 콘텐츠에서 안정적인 리듬감을 주어 전통
+            놀이의 친근하고 따뜻한 분위기를 표현합니다.
+         </p>
+       </article>
+
+       <!-- 오른쪽 1 행 -->
+        <div class="typo-hero-right right-1 reveal-text">
+          <div class="typo-name-wrap">
+            <p class="typo-name kor">스포카 한산스 네오</p>
+          </div>
+        </div>
+
+
+       <!-- 왼쪽 2 행 -->
+       <article class="typo-para para-2 reveal-text">
+         <h5>영문 전용서체</h5>
+         <p>
+          단정하고 세련된 인상을 주는 산세리프체로, 
+          다양한 굵기와 안정된 비례감을 통해 콘텐츠의 
+          완성도를 높여줍니다. 현대적 감각과 전통 해석이라
           는 프로젝트의 방향성과 잘 어울립니다.
-        </p>
-      </article>
-    </div>
+         </p>
+       </article>
 
-    <div class="typo-hero-right">
-      <p class="typo-name kor">스포카 한산스 네오</p>
-      <p class="typo-name eng">프리텐다드 <span>Pretendard</span></p>
-    </div>
-  </div>
+       <!-- 오른쪽 2 행 -->
+        <div class="typo-hero-right right-2 reveal-text">
+          <div class="typo-name-wrap">
+            <p class="typo-name eng">프리텐다드 <span>Pretendard</span></p>
+          </div>
+        </div>
 
-  <!-- 하단 구분선 -->
-  <hr class="typo-hero-line">
+
+   </div>
+
+   <hr class="typo-hero-line">
 </section>
 
-<!-- ===== 대표 색상 (좌우 5vw) ===== -->
 <section class="typo-palette" aria-labelledby="tp-title">
-  <h3 id="tp-title" class="tp-heading">대표 색상</h3>
+  <h3 class="typo-hero-kicker">대표색상</h3>
 
-<div class="tp-grid">
+  <div class="tp-grid">
 
-  <!-- 1줄 (10칸 기준) -->
-  <div class="tp-row first-line">
-    <div class="tp-swatch span-4" style="--c:#B48B11">
-      <em class="tp-tag">웹</em>
-      <div class="tp-textline">
-        <strong>어두운 황금색</strong>
-        <span>#B48B11</span>
+    <!-- 🔹 상단 라벨 줄 -->
+    <div class="tp-label-row reveal-text">
+      <div class="tp-label">코랄 레드</div>
+      <div class="tp-label">그레이</div>
+      <div class="tp-label">블랙&amp;화이트</div>
+    </div>
+
+    <!-- 1줄 -->
+    <div class="tp-row reveal-text">
+      <div class="tp-swatch span-3" style="--c:#EF4722">
+        <div class="tp-textline"><span>#EF4722</span></div>
+      </div>
+      <div class="tp-swatch span-3" style="--c:#A0A0A0">
+        <div class="tp-textline"><span>#A0A0A0</span></div>
+      </div>
+      <div class="tp-swatch span-3" style="--c:#181818">
+        <div class="tp-textline"><span>#181818</span></div>
       </div>
     </div>
-    <div class="tp-swatch span-3 is-light" style="--c:#D9C588">
-      <div class="tp-textline">
-        <strong>옅은 겨자색</strong>
-        <span>#D9C588</span>
+
+    <!-- 2줄 -->
+    <div class="tp-row reveal-text">
+      <div class="tp-swatch span-3" style="--c:#8A2C18">
+        <div class="tp-textline"><span>#8A2C18</span></div>
+      </div>
+      <div class="tp-swatch span-3" style="--c:#CBCBCB">
+        <div class="tp-textline"><span>#CBCBCB</span></div>
+      </div>
+      <div class="tp-swatch span-3 is-light" style="--c:#FFFFFF">
+        <div class="tp-textline"><span>#FFFFFF</span></div>
       </div>
     </div>
-    <div class="tp-swatch span-3 is-light" style="--c:#FFFCF6">
-      <div class="tp-textline">
-        <strong>연한 크림색</strong>
-        <span>#FFFCF6</span>
+
+    <!-- 3줄 -->
+    <div class="tp-row reveal-text">
+      <div class="tp-swatch span-3 is-light" style="opacity: 0;">
+        <div class="tp-textline"><span>#DFDFDF</span></div>
+      </div>
+      <div class="tp-swatch span-3 is-light" style="--c:#F0F0F0">
+        <div class="tp-textline"><span>#F0F0F0</span></div>
+      </div>
+      <div class="tp-swatch span-3" style="opacity: 0;">
+        <div class="tp-textline"><span>#3F3333</span></div>
       </div>
     </div>
+
   </div>
 
-  <!-- 2줄 이후는 기존 12칸 -->
-  <div class="tp-row">
-    <div class="tp-swatch span-3 is-light" style="--c:#FF9500">
-      <div class="tp-textline"><strong>선명한 오렌지</strong><span>#FF9500</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#900808">
-      <div class="tp-textline"><strong>빨강</strong><span>#900808</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#092561">
-      <div class="tp-textline"><strong>어두운 남색</strong><span>#092561</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#A68F8F">
-      <div class="tp-textline"><strong>차분한 로즈색</strong><span>#A68F8F</span></div>
-    </div>
-  </div>
-
-  <div class="tp-row">
-    <div class="tp-swatch span-3 is-light" style="--c:#DFDFDF">
-      <div class="tp-textline"><strong>연한 회색</strong><span>#DFDFDF</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#5A6D64">
-      <div class="tp-textline"><strong>짙은 세이지</strong><span>#5A6D64</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#3F3333">
-      <div class="tp-textline"><strong>진한 회갈색</strong><span>#3F3333</span></div>
-    </div>
-    <div class="tp-swatch span-3" style="--c:#373942">
-      <div class="tp-textline"><strong>진한 회청색</strong><span>#373942</span></div>
-    </div>
-  </div>
-
-</div>
-
-<hr class="tp-line" />
-
-
+  <hr class="tp-line" />
 </section>
 
-<!-- ===== 로고 섹션 ===== -->
+
 <section class="typo-logo" aria-labelledby="logo-title">
-  <h3 id="logo-title" class="logo-heading">로고</h3>
+  <h3 id="tp-title" class="typo-hero-kicker">로고</h3>
 
   <div class="logo-grid">
-    <!-- 왼쪽 큰 이미지 -->
+
+    <!-- 🔹 왼쪽 큰 로고 이미지 -->
     <div class="logo-left">
       <img src="img/typo4.png" alt="큰 로고 이미지">
     </div>
 
-    <!-- 오른쪽 작은 이미지 2개 + 설명 -->
+    <!-- 🔹 오른쪽: 작은 로고들 + 설명 -->
     <div class="logo-right">
+
+      <!-- ⭐ 1줄: typo5 (앞) + typo8 (밑→위 블라인드) + typo6 그대로 -->
       <div class="logo-small">
-        <img src="img/typo5.png" alt="로고 부분 이미지1">
-        <img src="img/typo6.png" alt="로고 부분 이미지2">
+        <!-- 전경: 그대로 유지 -->
+        <img src="img/typo5.png" alt="로고 부분 이미지1" class="fg">
+
+        <!-- 블라인드처럼 아래에서 위로 채워지는 배경 -->
+        <div class="blind-wrap blind-up reveal-text">
+          <img src="img/typo8.png" alt="블라인드 배경1" class="bg">
+        </div>
+
+        <!-- 오른쪽 전경: 그대로 -->
+        <img src="img/typo6.png" alt="로고 부분 이미지2" class="fg">
       </div>
 
-      <div class="logo-desc">
-        <strong>놀이의 흥(興)을 담은 로고</strong>
+      <!-- ⭐ 2줄: typo7 (앞) + typo9 (위→아래 블라인드) -->
+      <div class="logo-small2">
+        <!-- 전경: 그대로 -->
+        <img src="img/typo7.png" alt="로고 부분 이미지3" class="fg">
+
+        <!-- 블라인드처럼 위에서 아래로 내려오는 배경 -->
+        <div class="blind-wrap blind-down reveal-text">
+          <img src="img/typo9.png" alt="블라인드 배경2" class="bg">
+        </div>
+      </div>
+
+      <!-- 🔹 설명 텍스트 -->
+      <div class="typo-para2 reveal-text">
+        <h5>놀이의 흥(興)을 담은 로고</h5>
         <p>
-          놀이의 역동성과 흥을 현대적 미니멀리즘으로 담아,<br>
-          잊혀져 가는 전통에 새로운 활력을 불어넣고,<br>
+          놀이의 역동성과 흥을 현대적 미니멀리즘으로 담아, 
+          잊혀져 가는 전통에 새로운 활력을 불어넣고, 
           과거와 현재를 잇는 경계 없는 놀이의 장을 상징한다.
         </p>
       </div>
+
     </div>
   </div>
 </section>
+</section>
+
 
 
 </section>
 
-      <div class="design_inner3"></div>
-    </section>
 
-    <!-- VIDEO -->
-    <section id="video" data-section>
-      <div class="video_text"><h1>홍보영상</h1></div>
-      <!-- <div class="video_inner"></div> -->
-       <div class="video_inner"><img src="img/video.png" alt=""></div>
-    </section>
+<section id="introduction" class="team-section" data-section class="section-dark">
+  <div class="team-inner">
+    <h2 class="t-p">팀 소개</h2>
+   
 
-<!-- TEAM 슬라이더 -->
-<section id="team" aria-label="팀 소개">
-  <div class="slider">
-    <button class="nav prev" aria-label="이전 카드">❮</button>
+    <div class="team-scroll">
+      <!-- 1명 -->
+      <article class="team-card" data-link="https://www.instagram.com/oneday_.twoday?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+        <div class="team-photo-wrap" >
+          <img src="img/team1.png" alt="이태형 프로그래밍">
 
-    <div class="stage">
-      <div class="ghost g1"></div>
-      <div class="ghost g2"></div>
-      <div class="ghost g3"></div>
+          <!-- 호버 시 뜨는 인스타 오버레이 -->
+          <a href="https://www.instagram.com/oneday_.twoday?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="team-photo-ig">
+            <span>@oneday__twoday</span>
+          </a>
+        </div>
 
-      <article class="card" aria-live="polite">
-        <div class="card-inner">
-          <h3 class="name">이태형</h3>
-          <p class="role">PROGRAMMER</p>
-          <a class="mail" href="mailto:leetaehyung@naver.com">lee@ex.com</a>
+        <div class="team-meta">
+          <p class="team-name">
+            이태형 <span class="team-role">프로그래밍</span>
+          </p>
+          <p class="team-email">dlxogud426@gmail.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/oneday_.twoday?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+              @oneday__twoday
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
         </div>
       </article>
+
+      <!-- 2명 -->
+      <article class="team-card" data-link="https://www.instagram.com/yang_p1031/?utm_source=ig_web_button_share_sheet">
+        <div class="team-photo-wrap">
+          <img src="img/team2.png" alt="양채윤 프로그래밍">
+          <a href="https://www.instagram.com/yang_p1031/?utm_source=ig_web_button_share_sheet" target="_blank" class="team-photo-ig">
+            <span>@yang_p1031</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            양채윤 <span class="team-role">프로그래밍</span>
+          </p>
+          <p class="team-email">woqpal1229@naver.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/yang_p1031/?utm_source=ig_web_button_share_sheet" target="_blank">
+              @yang_p1031
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <!-- 3명 -->
+      <article class="team-card" data-link="https://myip.kr/WiuLq">
+        <div class="team-photo-wrap">
+          <img src="img/team3.png" alt="최지예 기획">
+          <a href="https://myip.kr/WiuLq" target="_blank" class="team-photo-ig">
+            <span>https://myip.kr/WiuLq</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            최지예 <span class="team-role">기획</span>
+          </p>
+          <p class="team-email">chjy21chjy21@gmail.com</p>
+          <p class="team-ig">
+            <a href="https://myip.kr/WiuLq" target="_blank">
+              https://myip.kr/WiuLq
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <!-- 4명 -->
+      <article class="team-card" data-link="https://www.instagram.com/de_leenazzang/?utm_source=ig_web_button_share_sheet">
+        <div class="team-photo-wrap">
+          <img src="img/team4.png" alt="이나린 디자인">
+          <a href="https://www.instagram.com/de_leenazzang/?utm_source=ig_web_button_share_sheet" target="_blank" class="team-photo-ig">
+            <span>@de_leenazzang</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            이나린 <span class="team-role">디자인</span>
+          </p>
+          <p class="team-email">narinee03@naver.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/de_leenazzang/?utm_source=ig_web_button_share_sheet" target="_blank">
+              @de_leenazzang
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <article class="team-card" data-link="https://www.instagram.com/hong_heekwun/?utm_source=ig_web_button_share_sheet">
+        <div class="team-photo-wrap">
+          <img src="img/team5.png" alt="홍희권 디자인">
+          <a href="https://www.instagram.com/hong_heekwun/?utm_source=ig_web_button_share_sheet" target="_blank" class="team-photo-ig">
+            <span>@hong_heekwun</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            홍희권 <span class="team-role">디자인</span>
+          </p>
+          <p class="team-email">honghk0312@naver.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/hong_heekwun/?utm_source=ig_web_button_share_sheet" target="_blank">
+              @hong_heekwun
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <article class="team-card" data-link="https://www.instagram.com/hyun_yun0?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+        <div class="team-photo-wrap">
+          <img src="img/team6.png" alt="윤서현 디자인">
+          <a href="https://www.instagram.com/hyun_yun0?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="team-photo-ig">
+            <span>@hyun_yun0</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            윤서현 <span class="team-role">디자인</span>
+          </p>
+          <p class="team-email">havenseohyun@gamil.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/hyun_yun0?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+              @hyun_yun0
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <article class="team-card" data-link="https://www.instagram.com/hyeoktfolio_01/?utm_source=ig_web_button_share_sheet">
+        <div class="team-photo-wrap">
+          <img src="img/team7.png" alt="권혁민 디자인">
+          <a href="https://www.instagram.com/hyeoktfolio_01/?utm_source=ig_web_button_share_sheet" target="_blank" class="team-photo-ig">
+            <span>@hyeoktfolio_01</span>
+          </a>
+        </div>
+        <div class="team-meta">
+          <p class="team-name">
+            권혁민 <span class="team-role">디자인</span>
+          </p>
+          <p class="team-email">hyeokmin6080@naver.com</p>
+          <p class="team-ig">
+            <a href="https://www.instagram.com/hyeoktfolio_01/?utm_source=ig_web_button_share_sheet" target="_blank">
+              @hyeoktfolio_01
+              <img src="img/t-link.png" alt="" class="team-ig-icon">
+            </a>
+          </p>
+        </div>
+      </article>
+
+    </div><!-- /.team-scroll -->
+  </div><!-- /.team-inner -->
+</section>
+
+
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="img/footerlogo.png" alt="NOL:EUM 로고">
     </div>
-
-    <button class="nav next" aria-label="다음 카드">❯</button>
-
-    <!-- JS가 채울 자리 (비워둠) -->
-    <div class="dots" role="tablist" aria-label="슬라이드 위치"></div>
+    <p class="footer-copy">© 2025 NOL:EUM. All rights reserved</p>
   </div>
-</section>
+</footer>
 
-<section id="footer" data-section aria-labelledby="ft">
-  <footer class="footer">
-    <div class="footer-left">
-      <div class=""><img src="img/footerlogo.png" alt=""></div>
-      <p class="footer-copy">© 2025 NOL:EUM. All rights reserved</p>
-    </div>
-  </footer>
-</section>
-
-  </main>
+</div>
 
   <script src="script.js" defer></script>
+  <script src="grid-dev.js"></script>
+  <script src="videoscript.js"></script>
+  <script src="scale.js"></script>
 </body>
 </html>

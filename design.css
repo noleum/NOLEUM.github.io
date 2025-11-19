@@ -1,0 +1,727 @@
+/* ⬅️ 왼쪽 그리드에 정렬된 텍스트 레이어 */
+.d-content {
+  padding-top: 250px;          /* 이미지에서 텍스트 시작 지점 */
+  padding-bottom: 50px;
+  background-color: #181818;
+  width: 100%;
+  padding-left: 150px; 
+}
+
+.ph-text4 { 
+  max-width: 850px; 
+  color: #ffffff; 
+}
+
+.ph-kicker4 { 
+  display: block; 
+  font-weight: 400; 
+  margin-bottom: 10px; 
+  font-size: 22px; 
+  color: #EA4521; 
+}
+
+.ph-title4 
+{ margin: 0 0 18px; 
+  font-size: 38px; 
+  font-weight: 400; 
+  line-height: 1.3; 
+  color: #ffffff; 
+  letter-spacing: -0.04em;
+}
+
+.ph-desc4 { 
+  margin: 0; 
+  color: #747474; 
+  font-size: 28px; 
+  font-weight: 300; 
+  line-height: 1.4; 
+  letter-spacing: -0.02em;
+}
+
+
+/* ===== DESIGN 2분할 × 3줄 섹션 ===== */
+.design-split {
+  width: 100%;
+  /* height: 100vh; /* ❌ 화면 높이 고정 제거 */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #181818;
+}
+
+
+.split_row {
+  display: flex;
+  width: 100%;
+  /* height: 33.33vh; /* ❌ 높이 고정 제거 */
+  height: auto; /* ✅ 콘텐츠 높이에 맞춰 유동적으로 변경 */
+  background: #181818;
+}
+
+/* 좌우 영역 */
+.split_left,
+.split_right {
+  width: 50%;
+  /* height: 100%; /* split_row의 height가 auto가 되면서 100%는 의미가 모호해지지만, flex 아이템으로 동작하므로 유지 */
+  height: auto; /* ✅ split_row가 auto이므로, 이도 auto로 설정하여 이미지에 맞춰지도록 함 */
+  position: relative;
+  background: #181818;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 비디오 */
+.split_left video,
+.split_right video {
+  width: 100%;      /* ✅ 좌우는 꽉 채움 (유지) */
+  height: auto;     /* ✅ 세로는 비율에 맞게 (유지) */
+  object-fit: contain; /* ✅ 안 잘리고 비율 유지 (유지) */
+  object-position: center;
+  display: block;
+  background: #181818;
+}
+
+/* 반응형 (모바일일 때 세로 쌓임) */
+@media (max-width: 900px) {
+  .split_row {
+    /* 가로 분할(row)을 세로로 쌓음 (column) */
+    flex-direction: column; 
+    /* height: auto;는 데스크탑 CSS에서 이미 적용되었으므로 제거 (선택 사항) */
+  }
+
+  .split_left,
+  .split_right {
+    /* 좌우 영역의 너비를 50%에서 100%로 변경 */
+    width: 100%; 
+    /* height: auto;는 데스크톱 CSS에서 이미 적용되었으므로 제거 (선택 사항) */
+  }
+
+  /* .split_left img, .split_right img는 데스크톱/모바일 모두 width: 100%, height: auto이므로,
+     별도로 재선언할 필요가 없어 제거했습니다. */
+}
+
+/* ===== DESIGN GALLERY (full-bleed + caption fade-in) ===== */
+.gallery-hero{
+  padding: 0;
+  background: #181818;
+  color: #fff;
+}
+
+.gallery-hero .gh-item{
+  position: relative;
+  width: 100%; 
+  margin: 0;
+  overflow: hidden;
+  background: #181818;
+  /* height: auto; ← auto는 기본값이라 안 써도 됨 */
+  display: block;      /* flex까지 굳이 필요 없으면 이걸로 충분 */
+}
+
+/* 이미지: 그냥 자연스럽게 비율 유지하며 전체 보이게 */
+.gallery-hero .gh-item img{
+  display: block;
+  position: relative;   /* ⬅ absolute 지우기 */
+  top: auto;
+  left: auto;
+  width: 100%; 
+  height: auto; 
+  max-width: 100%;
+  object-fit: contain;  /* 잘리지 않게 전체 보이기 */
+}
+
+/* 캡션 (z=2) */
+.gallery-hero .gh-item figcaption{
+  position:absolute;
+  left: 150px; 
+  bottom: 80px;  /* 이미지 바닥에서 위로 띄우는 거리 */
+  z-index:2;
+  color:#fff;
+}
+
+.gallery-hero .gh-item h3{
+  margin:0 0 15px;
+  font-size:64px;
+  font-weight:500;
+}
+.gallery-hero .gh-item p{
+  margin:0 0 20px;
+  font-size:38px;
+  font-weight: 300;
+  line-height:1.5;
+  letter-spacing: -0.03em;
+  opacity:.5;
+}
+
+/* JS 있을 때만 초기 숨김(.reveal) → 진입 시 .is-in */
+.js .gallery-hero .gh-item figcaption.reveal{
+  opacity:0;
+  transform:translateY(12px);
+  will-change:opacity, transform;
+  transition:opacity .7s ease, transform .7s ease;
+}
+.js .gallery-hero .gh-item figcaption.is-in{
+  opacity:1; transform:translateY(0);
+}
+.js .gallery-hero .gh-item figcaption.is-in h3{ transition-delay:.05s; }
+.js .gallery-hero .gh-item figcaption.is-in p { transition-delay:.12s; }
+
+/* 🔧 모바일: 스냅 해제 (scroll-snap-type: none을 body에 적용하지 않았기 때문에, 
+              각 아이템의 scroll-snap-align: none; 만으로 충분합니다) */
+@media (max-width: 900px){
+  .gallery-hero .gh-item{
+   min-height: auto;
+   scroll-snap-align: none;
+   scroll-snap-stop: normal;
+  }
+  .gallery-hero .gh-item img{
+   left:auto;
+   margin-left:0;
+   width:100%;    /* 컨테이너 폭 100% */
+   height:auto;   /* 비율 유지 */
+   max-width:100%;
+  }
+  .gallery-hero .gh-item figcaption{
+   left:5vw; right:5vw; bottom:3vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .js .gallery-hero .gh-item figcaption{
+   transition:none; transform:none; opacity:1;
+  }
+}
+
+
+/* =========================
+   TYPOGRAPHY HERO (scoped)
+   ========================= */
+
+#typography {
+  background: #f5f5f5;
+  padding-bottom: 15vh;
+}
+
+/* 👉 1920px 캔버스 + 중앙 정렬 */
+.typo-hero {
+  width: 100%;
+  max-width: 2560px;              /* 🔥 최대 1920 */
+  margin: 0 auto;                 /* 🔥 화면 가운데로 */
+
+  padding-top: 200px;
+  padding-bottom: 100px;
+  padding-left: 150px; 
+  padding-right: 150px; 
+
+  box-sizing: border-box;
+}
+
+
+
+/* ─ 서브 타이틀(서체 디자인) ─ */
+.typo-hero-kicker{
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #000000;
+  letter-spacing: -0.02em;
+  margin: 0 0 50px 0;
+}
+
+/* ─ 본문 레이아웃 : 좌/우 2컬럼 (2행 고정) ─ */
+.typo-hero-body{
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-template-rows: auto auto;
+  column-gap: 100px;
+  row-gap: 160px;
+  align-items: start;
+}
+
+/* 각 행 위치 고정 */
+.para-1  { grid-column: 1; grid-row: 1; }
+.right-1 { grid-column: 2; grid-row: 1; }
+.para-2  { grid-column: 1; grid-row: 2; }
+.right-2 { grid-column: 2; grid-row: 2; }
+
+/* 왼쪽 설명 공통 */
+.typo-hero-left .typo-para,
+.typo-para{
+  margin: 0;
+  width: 514px;
+}
+
+.typo-para h5{
+  margin: 0 0 8px 0;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color:#000000;
+}
+
+.typo-para p{
+  margin: 0;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color:#000000;
+}
+
+/* 오른쪽 큰 서체명 */
+.typo-hero-right {
+  color: #EF4722;
+  width: 1470px;
+
+  display: flex;
+  justify-content: flex-end;   /* 👉 박스 전체는 오른쪽으로 */
+  align-items: flex-start;
+}
+
+/* 내부 텍스트 래퍼 */
+.typo-name-wrap {
+  text-align: left;           /* 👉 텍스트 왼쪽 정렬 */
+  width: 100%;                /* 텍스트가 박스 안에서 꽉 차게 */
+}
+
+.typo-name{
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.typo-name.kor{
+  font-size: 158px;
+}
+.typo-name.eng {
+  font-size: 158px;
+  font-family: "Pretendard", sans-serif;  
+}
+
+
+
+/* 하단 구분선 */
+.typo-hero-line{
+  margin: 100px 0 0 0;
+  border: 0;
+  border-top: 1px solid #8A2C18;
+  width: 100%;
+}
+
+/* 반응형 */
+@media (max-width: 860px){
+  .typo-hero-body{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 24px;
+  }
+
+  .para-1  { grid-column: 1; grid-row: 1; }
+  .right-1 { grid-column: 1; grid-row: 2; }
+  .para-2  { grid-column: 1; grid-row: 3; }
+  .right-2 { grid-column: 1; grid-row: 4; }
+}
+
+
+
+/* =======================
+   대표 색상 팔레트 (scoped)
+   ======================= */
+.typo-palette{
+  padding-left: 150px; 
+  padding-right: 150px; 
+  margin: 0 0 6vh;
+  box-sizing: border-box;
+
+}
+
+/* 상위 그리드 */
+.tp-grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  grid-auto-rows: auto;
+}
+
+/* ─ 상단 라벨 줄 (코랄 레드 / 그레이 / 블랙&화이트) ─ */
+.tp-label-row{
+  grid-column: 1 / -1;             /* 전체 폭 */
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 14px;
+  margin-bottom: 10px;
+  font-size: clamp(14px, 1.1vw, 32px);
+  font-weight: 300;
+  color: #000000;
+  opacity: .8;
+}
+
+.tp-label{
+  grid-column: span 3;       
+  font-size: 28px;
+}
+
+/* 각 줄 컨테이너 */
+.tp-row{
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 25px;
+  margin-bottom: 10PX;
+}
+
+/* 공통 스와치 */
+.tp-swatch{
+  --radius: 32px;
+  position: relative;
+  background: var(--c, #ccc);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 50px 60px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  /* ⭐️ 중앙 정렬 + 오른쪽 정렬 */
+  justify-content: center;   
+  align-items: flex-end;
+
+  box-shadow: 0 0 3px 3px rgba(0,0,0,.09);
+    box-shadow: 2px 2px 0px 0px rgba(0,0,0,.09);
+}
+
+
+/* 밝은 배경일 때 글자색 보정 */
+.tp-swatch.is-light { color: #111; }
+
+/* strong + span 한 줄, 오른쪽 정렬 */
+.tp-textline{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-end;       /* 👉 오른쪽 정렬 */
+  gap: 8px;
+  width: 100%;
+  text-align: right;
+}
+
+
+.tp-swatch span{
+  font-size: 28px;
+  font-weight: 300;
+}
+
+/* 칸 수 */
+.tp-swatch.span-3{ grid-column: span 3; }
+
+/* 하단 구분선 */
+.tp-line{
+  border: 0;
+  border-top: 1px solid #8A2C18;
+  margin: 100px 0 0 0;
+}
+
+/* 반응형 */
+@media (max-width: 960px){
+  .tp-grid{ grid-template-columns: repeat(12, 1fr); }
+
+  .tp-label-row{
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .tp-label{ grid-column: span 3; }
+
+  .tp-row{
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 72px;
+  }
+  .tp-row.first-line{ grid-template-columns: repeat(6, 1fr); }
+  .tp-swatch.span-5{ grid-column: span 6; }
+  .tp-swatch.span-4{ grid-column: span 6; }
+  .tp-swatch.span-3{ grid-column: span 3; }
+}
+
+@media (max-width: 560px){
+  .tp-label-row{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tp-label{ grid-column: span 2; }
+
+  .tp-row{
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 64px;
+  }
+  .tp-swatch{ grid-column: span 1; }
+}
+
+/* =======================
+   로고 섹션
+   ======================= */
+.typo-logo {
+  padding-left: 150px; 
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 5vw;
+  align-items: stretch;
+}
+
+
+/* 왼쪽 큰 이미지 */
+.logo-left img {
+  width: 86%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* =======================
+   오른쪽 컬럼
+   ======================= */
+.logo-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1vw;
+}
+
+/* =======================
+   이미지 줄
+   ======================= */
+.logo-small,
+.logo-small2 {
+  display: flex;
+  flex-direction: row;
+  gap: 45px;
+  position: relative;
+}
+
+.logo-small2 {
+  margin-top: -150px;
+  margin-bottom: 2vh;
+}
+
+/* 전경 이미지 (typo5, typo6, typo7) */
+.logo-small > img,
+.logo-small2 > img {
+  width: 33%;
+  height: auto;
+  object-fit: contain;
+  z-index: 2;
+  position: relative;
+}
+
+/* =======================
+   블라인드(typo8, typo9)
+   ======================= */
+.blind-wrap {
+  position: absolute;
+  width: 33%;
+  overflow: hidden;
+  height: 0; /* 처음 완전 가려짐 */
+  transition: height 4s cubic-bezier(.22,.82,.26,1);
+  z-index: 1; /* 전경 뒤 */
+}
+
+/* 아래 → 위 */
+.blind-up {
+  bottom: 0;
+}
+
+/* 위 → 아래 */
+.blind-down {
+  top: 0;
+}
+
+/* 블라인드 내부 이미지 */
+.blind-wrap .bg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  left: 0;
+}
+
+/* 아래→위 이동용 이미지 위치 */
+.blind-up .bg { 
+  bottom: 0; 
+  transition-delay: 0.25s;
+}
+
+/* 위→아래 이동용 이미지 위치 */
+.blind-down .bg { 
+  top: 0; 
+  transition-delay: 3s;
+}
+
+/* 🔥 스크롤되면 블라인드 열기 */
+.blind-wrap.reveal-text.is-visible {
+  height: 100%;
+}
+
+/* =======================
+   설명 텍스트
+   ======================= */
+.typo-para2 {
+  margin: 0;
+  width: 680px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.typo-para2.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typo-para2 h5 {
+  margin: 0 0 15px 0;
+  font-size: 33px;
+  font-weight: 400;
+  color: #484848;
+}
+
+.typo-para2 p {
+  margin: 0;
+  font-size: 33px;
+  font-weight: 300;
+  line-height: 1.3;
+  color: #484848;
+}
+
+/* =======================
+   반응형
+   ======================= */
+@media (max-width: 960px) {
+  .logo-grid {
+    grid-template-columns: 1fr;
+    gap: 4vh;
+  }
+
+  .logo-small > img,
+  .logo-small2 > img,
+  .blind-wrap {
+    width: 45%;
+  }
+
+  .logo-small,
+  .logo-small2 {
+    gap: 4vw;
+    margin-top: 0;
+    margin-bottom: 2vh;
+  }
+}
+
+
+
+/* =========================
+   TYPOGRAPHY 인터랙션
+   ========================= */
+
+/* 1행(para-1 + kor) / 2행(para-2 + eng) 기본 상태 */
+.para-1,
+.right-1,
+.para-2,
+.right-2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(.22,.82,.26,1),
+    transform 0.6s cubic-bezier(.22,.82,.26,1);
+  will-change: opacity, transform;
+}
+
+/* 1행은 먼저, 2행은 살짝 늦게 */
+.para-1,
+.right-1 {
+  transition-delay: 0.12s;
+}
+.para-2,
+.right-2 {
+  transition-delay: 0.30s;
+}
+
+/* .is-visible 붙으면 위로 슥 올라오면서 나타남 */
+.para-1.is-visible,
+.right-1.is-visible,
+.para-2.is-visible,
+.right-2.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 🔹 팔레트 라벨 + 각 줄 기본 상태
+   (전역 .reveal-text 애니메이션보다 더 구체적인 selector로 덮어쓰기) */
+.tp-label-row.reveal-text,
+.tp-row.reveal-text {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(.22,.82,.26,1),
+    transform 0.7s cubic-bezier(.22,.82,.26,1);
+  will-change: opacity, transform;
+}
+
+/* 공통: is-visible 되면 위로 올라오면서 나타남 */
+.tp-label-row.reveal-text.is-visible,
+.tp-row.reveal-text.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 한 줄씩 순차 등장 */
+.tp-label-row.reveal-text.is-visible {
+  transition-delay: 0.10s;
+}
+
+/* 1줄 */
+.tp-grid > .tp-row.reveal-text:nth-of-type(2).is-visible {
+  transition-delay: 0.5s;
+}
+
+/* 2줄 */
+.tp-grid > .tp-row.reveal-text:nth-of-type(3).is-visible {
+  transition-delay: 1s;
+}
+
+/* 3줄 */
+.tp-grid > .tp-row.reveal-text:nth-of-type(4).is-visible {
+  transition-delay: 1.5s;
+}
+
+/* 🔹 로고 설명 블록 인터랙션 */
+.typo-para2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(.22,.82,.26,1),
+    transform 0.6s cubic-bezier(.22,.82,.26,1);
+  will-change: opacity, transform;
+}
+.typo-para2.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.15s;
+}
+
+/* 모션 줄이기 설정 배려 */
+@media (prefers-reduced-motion: reduce) {
+  .para-1,
+  .right-1,
+  .para-2,
+  .right-2,
+  .tp-label-row.reveal-text,
+  .tp-row.reveal-text,
+  .typo-para2 {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

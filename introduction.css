@@ -1,0 +1,189 @@
+/* =========================
+   수정된 CSS 코드
+   ========================= */
+#introduction {
+  background: #181818;
+}
+
+.team-section {
+  width: 100%;
+  padding: 250px 0 300px;
+  color: #fff;
+}
+
+.t-p {
+  margin: 0 0 50px;
+    padding-left: 150px; 
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #EF4722;
+  letter-spacing: -0.04em;
+}
+
+/* 컨테이너 – 마진 바깥까지 카드가 보여도 잘리지 않게 */
+.team-inner {
+  width: 100%;
+  margin: 0;  /* ⬅️ margin-left 없애고 */
+  overflow: hidden;  /* ⬅️ 바깥으로 삐져나온 것 안 보이게 */
+}
+
+
+/* 🔹 가로 스크롤 영역 */
+.team-scroll {
+  display: flex;
+  gap: 70px;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 8px;
+  padding-left: 150px; 
+  padding-right: 150px; 
+
+  scroll-behavior: auto;   /* 섹션 내부는 네이티브로 놔두자 */
+  scroll-snap-type: none;  /* ✅ 스냅 완전 OFF */
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+
+/* WebKit (Chrome, Safari 등) */
+.team-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* 🔹 개별 카드 */
+.team-card {
+  flex: 0 0 auto;
+  width: min(700px, 100%);  /* ⬅️ 최대 700, 단 화면보다 크진 않게 */
+}
+
+
+/* 사진 래퍼 – 비율 강제 X, 이미지 그대로 */
+.team-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: visible; /* 넘치는 부분도 보이도록 유지 */
+  border-radius: 0;
+}
+
+/* 사진 – 원본 비율 그대로, 안 잘림 */
+.team-photo-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transition:
+   transform 0.4s cubic-bezier(.22,.82,.26,1),
+   filter 0.3s ease;
+}
+
+/* 기본 hover: 살짝 위로 + 어두워짐 */
+.team-card:hover .team-photo-wrap img {
+  transform: translateY(-4px) scale(1.02);
+  filter: brightness(0.7);
+}
+
+/* 🔹 호버 시 뜨는 인스타 레이어 */
+.team-photo-ig {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  margin: 0 auto;
+
+  font-size: 40px;
+  font-weight: 200;
+  color: #b5b5b5;
+  text-decoration: none;
+
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+   opacity 0.3s ease,
+   transform 0.3s ease;
+}
+
+.team-card:hover .team-photo-ig {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* t-link 아이콘: 폰트 크기랑 비슷하게 */
+.team-ig-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 아래쪽 텍스트 영역 */
+.team-meta {
+  margin-top: 40px;
+  margin-left: 30px;
+}
+
+/* 이름 + 포지션 */
+.team-name {
+  margin: 0 0 4px;
+  font-size: 45px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.team-role {
+  margin-left: 6px;
+  font-size: 25px;
+  color: #EA4521;
+  font-weight: 300;
+}
+
+/* 이메일 */
+.team-email {
+  margin: 0 0 2px;
+  font-size: 25px;
+  color: #ffffff;
+  font-weight: 100;
+  opacity: 0.5;
+}
+
+/* 인스타 라인 */
+.team-ig {
+  margin: 0;
+  font-size: 25px;
+  color: #8B8B8B;
+  font-weight: 200;
+}
+
+.team-ig a {
+  color: #8B8B8B;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+    font-weight: 200;
+}
+
+.team-ig a:hover {
+  color: #EA4521;
+}
+
+/* 📱 반응형 */
+@media (max-width: 900px) {
+  /* 🌟 수정 5: 모바일에서는 team-inner의 마진 조정 */
+  .team-inner {
+   margin-left: 20px;
+   margin-right: 0;
+  }
+  .team-card {
+   width: 260px;
+  }
+}

@@ -17,6 +17,7 @@ const navLinks = [...document.querySelectorAll('.nav__link')];
 const linkMap = new Map(navLinks.map((l) => [l.getAttribute('href').slice(1), l]));
 const headerH =
   parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64;
+const headerEl = document.querySelector('.header');
 
 const spy = new IntersectionObserver(
   (entries) => {
@@ -24,9 +25,20 @@ const spy = new IntersectionObserver(
       const id = entry.target.id;
       const link = linkMap.get(id);
       if (!link) return;
+
       if (entry.isIntersecting) {
+        // 네비 현재 위치 표시
         navLinks.forEach((l) => l.removeAttribute('aria-current'));
         link.setAttribute('aria-current', 'page');
+
+        // 🔹 섹션이 밝은 섹션인지에 따라 헤더 테마 변경
+        if (headerEl) {
+          if (entry.target.classList.contains('section-light')) {
+            headerEl.classList.add('header--light');
+          } else {
+            headerEl.classList.remove('header--light');
+          }
+        }
       }
     });
   },
@@ -39,149 +51,497 @@ document.querySelectorAll('section[data-section]').forEach((sec) => spy.observe(
 // 🔹 진행바
 // =========================
 const bar = document.getElementById('progress');
+
 function setProgress() {
+  if (!bar) return;
   const h = document.documentElement;
   const scrollTop = h.scrollTop || document.body.scrollTop;
   const max = h.scrollHeight - h.clientHeight;
   const p = max ? (scrollTop / max) * 100 : 0;
   bar.style.width = p + '%';
 }
+
 addEventListener('scroll', setProgress, { passive: true });
 addEventListener('resize', setProgress);
 setProgress();
 
 // =========================
-// 🔹 TEAM 슬라이더
+// 🔹 스크롤 리빌(.reveal-text / PLANNING / VENN / PILL)
 // =========================
-const data = [
-  { name: '이태형', role: 'PROGRAMMER', mail: 'leetaehyung@naver.com', bg: '#555' },
-  { name: '이태형', role: 'DESIGNER', mail: 'leetaehyung@naver.com', bg: '#374056' },
-  { name: '이태형', role: 'PLANNER', mail: 'leetaehyung@naver.com', bg: '#756565ff' },
-  { name: '이태형', role: '3D ARTIST', mail: 'leetaehyung@naver.com', bg: '#697565ff' },
-  { name: '이태형', role: 'PROGRAMMER', mail: 'leetaehyung@naver.com', bg: '#645d71ff' },
-  { name: '이태형', role: 'DESIGNER', mail: 'leetaehyung@naver.com', bg: '#674968ff' },
-  { name: '이태형', role: 'PLANNER', mail: 'leetaehyung@naver.com', bg: '#677d83ff' }
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const options = { threshold: 0.25 };
 
-const stage = document.querySelector('#team .stage');
-const card = stage.querySelector('.card');
-const nameEl = card.querySelector('.name');
-const roleEl = card.querySelector('.role');
-const mailEl = card.querySelector('.mail');
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const prevBtn = document.querySelector('#team .prev');
-const nextBtn = document.querySelector('#team .next');
-const dotsBox = document.querySelector('#team .dots');
-
-// --- 도트 생성: data.length 개로 "단 한 번"만 만든다.
-dotsBox.innerHTML = ''; // 중복 방지
-const dots = [];
-for (let i = 0; i < data.length; i++) {
-  const dot = document.createElement('button');
-  dot.type = 'button';
-  dot.setAttribute('aria-label', `${i + 1}번`);
-  if (i === 0) dot.setAttribute('aria-current', 'true');
-  dot.addEventListener('click', () => go(i));
-  dotsBox.appendChild(dot);
-  dots.push(dot);
-}
-
-// 상태
-let index = 0;
-
-// 렌더
-function render(i, dir = 'left') {
-  const item = data[i];
-  nameEl.textContent = item.name;
-  roleEl.textContent = item.role;
-  mailEl.textContent = item.mail;
-  mailEl.href = `mailto:${item.mail}`;
-  card.style.background = item.bg;
-
-  // 애니메이션
-  card.classList.remove('slide-left', 'slide-right');
-  void card.offsetWidth; // reflow
-  card.classList.add(dir === 'left' ? 'slide-left' : 'slide-right');
-
-  // 도트 상태
-  dots.forEach((d, k) => {
-    if (k === i) d.setAttribute('aria-current', 'true');
-    else d.removeAttribute('aria-current');
-  });
-}
-
-// 이동
-function go(newIndex) {
-  if (newIndex === index) return;
-  const dir = newIndex > index ? 'left' : 'right';
-  index = (newIndex + data.length) % data.length;
-  render(index, dir);
-}
-
-// 버튼/키보드
-prevBtn.addEventListener('click', () => go(index - 1));
-nextBtn.addEventListener('click', () => go(index + 1));
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight') go(index + 1);
-  if (e.key === 'ArrowLeft') go(index - 1);
-});
-
-// 초기 렌더
-render(0, 'left');
-
-// ======== 아래 "중복 블록"은 반드시 삭제하세요 ========
-// - 'data.forEach((_,i)=>{ ... });' 로 도트 또 만드는 블록
-// - let i=0; 로 다시 상태 만들고, render/go 다시 정의하는 블록
-// - prev/next/keydown 또 추가하는 블록
-// - render(i); 다시 호출하는 블록
-
-// DESIGN GALLERY: 캡션 페이드인 (수정본)
-(() => {
-  // JS 플래그
-  document.documentElement.classList.add('js');
-
-  const root = document.querySelector('#design-gallery');
-  if (!root) return;
-
-  const captions = [...root.querySelectorAll('.gh-item figcaption')];
-  if (!captions.length) return;
-
-  // ✨ 애니메이션 대상에 초기 숨김 클래스 부여 (CSS에서 .reveal만 숨김)
-  captions.forEach(c => c.classList.add('reveal'));
-
-  // IO 미지원 브라우저: 바로 보여주기
-  if (!('IntersectionObserver' in window)) {
-    captions.forEach(c => c.classList.add('is-in'));
-    return;
+  function getPillDelay(el) {
+    if (el.classList.contains('ph-pill--a')) return 250;
+    if (el.classList.contains('ph-pill--b')) return 500;
+    if (el.classList.contains('ph-pill--c')) return 550;
+    return 0;
   }
 
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
+  function animatePill(pill) {
+    if (prefersReduced) {
+      pill.style.opacity = '1';
+      pill.style.transform = 'translate(-50%, -50%) scale(1)';
+      pill.style.filter = 'none';
+      return;
+    }
+
+    const delay = getPillDelay(pill);
+
+    const landingAnim = pill.animate(
+      [
+        {
+          opacity: 0,
+          transform: 'translate(-50%, -50%) scale(0.1)',
+          filter: 'blur(6px)',
+          boxShadow: '0 0 0 rgba(60, 60, 60, 0)',
+          offset: 0,
+        },
+        {
+          opacity: 0,
+          transform: 'translate(-50%, -65%) scale(0.2)',
+          filter: 'blur(6px)',
+          boxShadow: '50px 10px 30px rgba(107, 107, 107, 0.14)',
+          offset: 0.2,
+        },
+        {
+          opacity: 0.8,
+          transform: 'translate(-50%, -108%) scale(0.5)',
+          filter: 'blur(4px)',
+          boxShadow: '20px 30px 30px rgba(107, 107, 107, 0.14)',
+          offset: 0.3,
+        },
+        {
+          opacity: 1,
+          transform: 'translate(-50%, -40%) scale(1.08)',
+          filter: 'blur(1px)',
+          boxShadow: '30px 40px 30px rgba(107, 107, 107, 0.14)',
+          offset: 0.6,
+        },
+        {
+          opacity: 1,
+          transform: 'translate(-50%, -10%) scale(1)',
+          filter: 'blur(0)',
+          boxShadow: '98px 110px 30px rgba(107, 107, 107, 0.14)',
+          offset: 0.65,
+        },
+        {
+          opacity: 1,
+          transform: 'translate(-50%, -30%) scale(1)',
+          offset: 0.7,
+        },
+        {
+          opacity: 1,
+          transform: 'translate(-50%, -50%) scale(1)',
+          filter: 'blur(0)',
+          boxShadow: 'var(--ph-shape-shadow)',
+          offset: 1,
+        },
+      ],
+      { duration: 1500, delay, fill: 'forwards' }
+    );
+
+    landingAnim.onfinish = () => {
+      if (!pill.isConnected) return;
+
+      pill.animate(
+        [
+          { transform: 'translate(-50%, -50%) scale(1)' },
+          { transform: 'translate(-50%, -54%) scale(1)' },
+          { transform: 'translate(-50%, -50%) scale(1)' },
+          { transform: 'translate(-50%, -54%) scale(1)' },
+          { transform: 'translate(-50%, -50%) scale(1)' },
+        ],
+        { duration: 2600, iterations: Infinity, easing: 'ease-in-out' }
+      );
+    };
+  }
+
+  const revealOnScroll = (entries, observer) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-in');   // 보이기
-        // 한 번만 트리거하고 싶으면 관찰 해제
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.12,             // 살짝만 보여도 트리거
-    root: null,
-    rootMargin: '0px 0px -10% 0' // 하단에서 조금 일찍
-  });
+        const el = entry.target;
+        el.classList.add('is-visible');
 
-  captions.forEach(c => io.observe(c));
-
-  // 최초 진입 시 이미 화면 안에 있는 캡션 즉시 표시
-  const revealNow = () => {
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    captions.forEach(c => {
-      const r = c.getBoundingClientRect();
-      if (r.top < vh * 0.9 && r.bottom > 0) {
-        c.classList.add('is-in');
+        if (el.classList.contains('ph-pill')) {
+          animatePill(el);
+        }
+        observer.unobserve(el);
       }
     });
   };
-  revealNow();
-  window.addEventListener('load', revealNow);
-  window.addEventListener('resize', revealNow);
+
+  const observer = new IntersectionObserver(revealOnScroll, options);
+
+  const intro = document.querySelector('.ph-text-section2');
+  if (intro) observer.observe(intro);
+
+  document.querySelectorAll('.info-box').forEach((box) => observer.observe(box));
+  document.querySelectorAll('.reveal-text').forEach((item) => observer.observe(item));
+
+  const vennTarget = document.querySelector('#planning-venn .venn-right');
+  if (vennTarget) {
+    const vennObserver = new IntersectionObserver(
+      (entries, ob) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            vennTarget.classList.add('is-active');
+            ob.unobserve(vennTarget);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    vennObserver.observe(vennTarget);
+  }
+
+  document.querySelectorAll('.ph-pill').forEach((pill) => observer.observe(pill));
+
+  // =========================
+  // 🔹 TEAM SCROLL (가로 휠 부드럽게)
+  // =========================
+  const teamScroll = document.querySelector('.team-scroll');
+
+  if (teamScroll) {
+    let targetScroll = teamScroll.scrollLeft;
+    let isAnimating = false;
+
+    function animateScroll() {
+      if (!isAnimating) return;
+
+      const current = teamScroll.scrollLeft;
+      const diff = targetScroll - current;
+
+      if (Math.abs(diff) < 0.5) {
+        teamScroll.scrollLeft = targetScroll;
+        isAnimating = false;
+        return;
+      }
+
+      teamScroll.scrollLeft = current + diff * 0.15;
+      requestAnimationFrame(animateScroll);
+    }
+
+    teamScroll.addEventListener(
+      'wheel',
+      (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+
+          const speed = 1; // 속도 조절
+          targetScroll += e.deltaY * speed;
+
+          const maxScroll = teamScroll.scrollWidth - teamScroll.clientWidth;
+          if (targetScroll < 0) targetScroll = 0;
+          if (targetScroll > maxScroll) targetScroll = maxScroll;
+
+          if (!isAnimating) {
+            isAnimating = true;
+            requestAnimationFrame(animateScroll);
+          }
+        }
+      },
+      { passive: false }
+    );
+  }
+
+  // =========================
+  // PLANNING-VENN: 민속촌 / 박물관 토글
+  // =========================
+  const vennTabs = document.querySelectorAll('.venn-tab');
+  const vennWordSets = document.querySelectorAll('.venn-words');
+  const vennBox = document.querySelector('#planning-venn .venn-box');
+  const vennToggle = document.querySelector('.venn-toggle-wrap');
+
+  if (vennTabs.length && vennWordSets.length) {
+    document.body.classList.add('pre-venn');
+    vennTabs.forEach((t) => t.classList.remove('is-active'));
+
+    vennWordSets.forEach((set) => {
+      const name = set.getAttribute('data-name');
+      set.classList.toggle('is-active', name === 'folk');
+    });
+
+    let firstClicked = false;
+
+    if (vennBox) {
+      const boxObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              vennBox.classList.add('is-active');
+              if (vennToggle) vennToggle.classList.add('is-active');
+              boxObserver.unobserve(vennBox);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      boxObserver.observe(vennBox);
+    }
+
+    vennTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+
+        if (!firstClicked) {
+          firstClicked = true;
+          document.body.classList.remove('pre-venn');
+        }
+
+        vennTabs.forEach((t) => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+
+        vennWordSets.forEach((set) => {
+          const name = set.getAttribute('data-name');
+          set.classList.toggle('is-active', name === target);
+        });
+      });
+    });
+  }
+
+  // =========================
+  // 팀 섹션 카드 클릭 → 링크 이동
+  // =========================
+  const teamCards = document.querySelectorAll('.team-card');
+  teamCards.forEach((card) => {
+    const url = card.getAttribute('data-link');
+    if (!url) return;
+
+    const photoWrap = card.querySelector('.team-photo-wrap');
+    if (photoWrap) {
+      photoWrap.style.cursor = 'pointer';
+      photoWrap.addEventListener('click', () => window.open(url, '_blank'));
+    }
+
+    const overlay = card.querySelector('.team-photo-ig');
+    if (overlay && overlay.tagName !== 'A') {
+      overlay.style.cursor = 'pointer';
+      overlay.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.open(url, '_blank');
+      });
+    }
+  });
+
+  // =========================
+  // ⭐ ORBIT → 개요텍스트 흐려지는 기능
+  // =========================
+  const planningOrbits = document.querySelector('.planning-orbits');
+
+  if (planningOrbits) {
+    planningOrbits.addEventListener('mouseenter', () => {
+      document.body.classList.add('orbits-hover');
+    });
+    planningOrbits.addEventListener('mouseleave', () => {
+      document.body.classList.remove('orbits-hover');
+    });
+  }
+
+  // =========================
+  // ⭐ MODELING PROCESS: 스크롤 리빌
+  // =========================
+  const processItems = document.querySelectorAll('#process .process-item');
+  if (processItems.length) {
+    const processObserver = new IntersectionObserver(
+      (entries, ob) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          ob.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.25,
+        rootMargin: '0px 0px -10% 0px',
+      }
+    );
+
+    processItems.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 80}ms`;
+      processObserver.observe(item);
+    });
+  }
+}); // 🔚 DOMContentLoaded 끝
+
+// =========================
+// 🔹 GRAPH BAR 애니메이션
+// =========================
+(function () {
+  const bars = Array.from(document.querySelectorAll('.bar'));
+  if (!bars.length) return;
+
+  const manualHeights = [280, 438, 718, 852];
+  const manualWidth = '252px';
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function toMs(str) {
+    if (!str) return 0;
+    const s = String(str).trim().split(',')[0];
+    if (s.endsWith('ms')) return parseFloat(s);
+    if (s.endsWith('s')) return parseFloat(s) * 1000;
+    return parseFloat(s) || 0;
+  }
+
+  function animateNumber(el, start, end, duration) {
+    if (!el) return;
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = Math.round(end);
+      return;
+    }
+
+    const startTime = performance.now();
+
+    function frame(now) {
+      const t = Math.min(1, (now - startTime) / duration);
+      const eased = easeOutCubic(t);
+      el.textContent = Math.round(start + (end - start) * eased);
+      if (t < 1) requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  const io =
+    'IntersectionObserver' in window
+      ? new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const barEl = entry.target;
+              const index = bars.indexOf(barEl);
+              const shape = barEl.querySelector('.bar-shape');
+              const numEl = barEl.querySelector('.bar-num');
+              const dataVal = Number(barEl.getAttribute('data-value')) || 0;
+
+              barEl.style.width = manualWidth;
+
+              if (shape) {
+                shape.style.height = `${manualHeights[index] || 200}px`;
+                // 강제 리플로우
+                /* eslint-disable no-unused-expressions */
+                shape.offsetHeight;
+                /* eslint-enable no-unused-expressions */
+              }
+
+              const baseDelay = 180;
+              const stepDelay = 140;
+              const staggerDelay = baseDelay + index * stepDelay;
+              barEl.style.setProperty('--stagger', `${staggerDelay}ms`);
+
+              if (shape) shape.style.transitionDelay = `${staggerDelay}ms`;
+              barEl.classList.add('in-view');
+
+              if (numEl && shape) {
+                const cs = getComputedStyle(shape);
+                const transDur = toMs(cs.transitionDuration) || 1600;
+                const transDelay = toMs(cs.transitionDelay) || 0;
+
+                if (
+                  window.matchMedia &&
+                  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ) {
+                  numEl.textContent = Math.round(dataVal);
+                } else {
+                  setTimeout(
+                    () => animateNumber(numEl, 0, dataVal, transDur),
+                    transDelay
+                  );
+                }
+              }
+
+              observer.unobserve(barEl);
+            });
+          },
+          { threshold: 0.5, rootMargin: '0px 0px -20% 0px' }
+        )
+      : null;
+
+  if (io) bars.forEach((b) => io.observe(b));
 })();
+
+// =========================
+// 🔹 3D 마키 라이트박스
+// =========================
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.process-marquee').forEach((el) => {
+    const src = el.getAttribute('data-img');
+    if (!src) return;
+
+    el.style.setProperty('--img', `url("${src}")`);
+
+    const img = new Image();
+    img.onload = () => {
+      const ratio =
+        img.naturalWidth && img.naturalHeight
+          ? img.naturalWidth / img.naturalHeight
+          : 3;
+      el.style.setProperty('--ratio', ratio);
+    };
+    img.src = src;
+  });
+
+  const overlay = document.createElement('div');
+  overlay.className = 'pm-overlay';
+
+  const bigImg = document.createElement('img');
+  bigImg.alt = '';
+  overlay.appendChild(bigImg);
+
+  document.body.appendChild(overlay);
+
+  function closeZoom() {
+    overlay.classList.remove('is-active');
+    bigImg.src = '';
+    document.querySelectorAll('.process-track.freeze').forEach((t) => t.classList.remove('freeze'));
+  }
+
+  document.querySelectorAll('.pm-img').forEach((img) => {
+    img.addEventListener('click', () => {
+      const track = img.closest('.process-track');
+      if (track) track.classList.add('freeze');
+      bigImg.src = img.src;
+      overlay.classList.add('is-active');
+    });
+  });
+
+  overlay.addEventListener('click', closeZoom);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeZoom();
+  });
+});
+
+// =========================
+// 🔹 SCALE (2560x1440 기준 축소)
+// =========================
+function applyScale() {
+  const baseW = 2560;
+  const baseH = 1440;
+
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  const scaleW = vw / baseW;
+  const scaleH = vh / baseH;
+  const scale = Math.min(scaleW, scaleH);
+
+  const wrap = document.getElementById('scale-wrap');
+  if (!wrap) return;
+
+  wrap.style.transform = `scale(${scale})`;
+  wrap.style.width = baseW + 'px';
+  wrap.style.height = baseH + 'px';
+}
+
+window.addEventListener('load', applyScale);
+window.addEventListener('resize', applyScale);
