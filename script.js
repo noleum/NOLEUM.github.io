@@ -544,3 +544,51 @@ const headerObserver = new IntersectionObserver(
 );
 
 themedSections.forEach((sec) => headerObserver.observe(sec));
+
+
+// ===========================
+// 🔤 언어 토글 (KO ↔ EN)
+// ===========================
+(function () {
+  const html = document.documentElement;
+  const toggle = document.querySelector(".logo.lang-toggle");
+  if (!toggle) return;
+
+  // 초기 값 보정 (html에 data-lang 없으면 ko로)
+  if (!html.getAttribute("data-lang")) {
+    html.setAttribute("data-lang", "ko");
+  }
+
+  function updateToggleLabel() {
+    const lang = html.getAttribute("data-lang");
+    if (lang === "ko") {
+      toggle.textContent = "한";
+      toggle.setAttribute("aria-label", "현재 한국어, 클릭 시 English");
+    } else {
+      toggle.textContent = "EN";
+      toggle.setAttribute("aria-label", "Current English, click for Korean");
+    }
+  }
+
+  function switchLang() {
+    const current = html.getAttribute("data-lang") || "ko";
+    const next = current === "ko" ? "en" : "ko";
+    html.setAttribute("data-lang", next);
+    updateToggleLabel();
+  }
+
+  // 클릭으로 토글
+  toggle.addEventListener("click", switchLang);
+
+  // 키보드(Enter / Space) 지원
+  toggle.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      switchLang();
+    }
+  });
+
+  // 처음 한 번 상태 반영
+  updateToggleLabel();
+})();
+

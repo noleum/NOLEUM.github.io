@@ -976,9 +976,13 @@ body:not(.pre-venn) .venn-word.is-strong::before {
 }
 
 /* 위치 값은 그대로 */
-.ph-pill--a { top: 250px; left: 1300px; min-width: 462px; }
-.ph-pill--b { top: 600px; left: 600px; min-width: 280px; }
-.ph-pill--c { top: 940px; left: 1870px; min-width: 280px; }
+html[data-lang="ko"] .ph-pill--a { top: 250px; left: 1300px; min-width: 462px; }
+html[data-lang="ko"] .ph-pill--b { top: 600px; left: 600px; min-width: 280px; }
+html[data-lang="ko"] .ph-pill--c { top: 940px; left: 1870px; min-width: 280px; }
+
+html[data-lang="en"] .ph-pill--a { top: 250px; left: 1300px; min-width: 462px; }
+html[data-lang="en"] .ph-pill--b { top: 600px; left: 600px; min-width: 280px; }
+html[data-lang="en"] .ph-pill--c { top: 940px; left: 1870px; min-width: 280px; }
 
 /* 순서에 따른 딜레이는 JS에서 처리할 거라 CSS에선 제거함 */
 

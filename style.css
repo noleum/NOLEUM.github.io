@@ -100,7 +100,7 @@ img{ max-width:100%; height:auto; display:block; }
 
   background: transparent;
   z-index: 1000;
-  pointer-events: none;
+  /* pointer-events: none; */
 
   transition: background-color 0.25s ease, color 0.25s ease;
 }
@@ -473,6 +473,32 @@ nav{
 
   margin: 0;
   transform-origin: top left;
-
-
 }
+
+
+/* 🔥 언어 토글 버튼(헤더 왼쪽) */
+.logo.lang-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 포커스/호버 시 살짝 피드백 */
+.logo.lang-toggle:hover,
+.logo.lang-toggle:focus-visible {
+  outline: none;
+  opacity: 0.8;
+}
+
+/* 기본: 한국어만 보이게 */
+.lang-en {
+  display: none;
+}
+
+/* 한국어 모드 */
+html[data-lang="ko"] .lang-ko { display: inline; }
+html[data-lang="ko"] .lang-en { display: none; }
+
+/* 영어 모드 */
+html[data-lang="en"] .lang-ko { display: none; }
+html[data-lang="en"] .lang-en { display: inline; }
+
