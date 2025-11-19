@@ -487,11 +487,19 @@ height: 100%;
   margin-bottom: 14px;
   line-height: 1.25;
 }
-.ps-left p {
+html[data-lang="ko"] .ps-left p {
   margin: 0;
   color: #747474;
   max-width: 900px;
-  line-height: 1.85;
+  line-height: 1.5;
+  font-size: 28px;
+}
+
+html[data-lang="en"] .ps-left p {
+  margin: 0;
+  color: #747474;
+  max-width: 1000px;
+  line-height: 1.5;
   font-size: 28px;
 }
 
