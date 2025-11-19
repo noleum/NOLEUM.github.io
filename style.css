@@ -46,13 +46,14 @@
 
 html,body, main{
   margin:0;
+  padding: 0;
   color:var(--text);
-  overflow-x:hidden;
+  overflow-x:hidden !important; 
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   scroll-snap-type: y proximity;  /* 살짝 스냅 느낌 */
   scroll-behavior: smooth;
 
-  /* 🔥 여기에 추가 (브라우저 스크롤바 숨김) */
+  /* 🔥 브라우저 스크롤바 숨김 */
   scrollbar-width: none;      /* Firefox */
 }
 
@@ -60,8 +61,27 @@ html::-webkit-scrollbar {
   display: none;              /* Chrome, Safari, Edge */
 }
 
-
 img{ max-width:100%; height:auto; display:block; }
+
+/* =========================
+   SECTION THEME (dark / light)
+   ========================= */
+/* data-section + section-dark / section-light 를 HTML에 써둔 것용 */
+
+[data-section].section-dark {
+  color: #ffffff;
+}
+
+[data-section].section-light {
+  color: #000000;
+}
+
+/* 겹침 방지용 기본 레이어 */
+.section-dark,
+.section-light {
+  position: relative;
+  z-index: 1;
+}
 
 /* =========================
    HEADER
@@ -120,10 +140,8 @@ nav{
   color:#fff; 
 }
 
-/* 🔹 밝은 섹션 위에서 헤더 스타일 */
-.header--light {
-  background: rgba(245,245,245,0.94);
-}
+/* 🔹 밝은 섹션 위에서 헤더 스타일 (script.js에서 header--light 토글) */
+
 
 .header--light .logo {
   color:#000000;
@@ -135,7 +153,6 @@ nav{
 
 .header--light .nav__link[aria-current="page"],
 .header--light .nav__link:hover {
-  background:#ffffff;
   color:#000000;
 }
 
@@ -389,6 +406,7 @@ nav{
   background: #f5f5f5;   
   color: #000000;
   padding: 150px 0 150px;
+  overflow-y: hidden; /* ← footer 이후 스크롤 방지 */
 }
 
 #site-footer::after {
@@ -438,8 +456,23 @@ nav{
 /* =========================
    SCALE WRAPPER
    ========================= */
+
+/* 🔥 세로는 화면 밖으로 못 나가게 잘라내기
+   🔥 가로는 가운데 정렬 + 스케일 유지
+*/
+
+
 #scale-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 2560px;       /* 디자인 기준 폭 */
+  max-width: none;
+  height: 100%;        /* 화면 높이까지만 표현 */
+
+  margin: 0;
   transform-origin: top left;
+
+
 }
-
-

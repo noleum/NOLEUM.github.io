@@ -421,7 +421,7 @@
 .tp-line{
   border: 0;
   border-top: 1px solid #8A2C18;
-  margin: 100px 0 0 0;
+  margin: 100px 0 100px 0;
 }
 
 /* 반응형 */
@@ -461,7 +461,7 @@
    ======================= */
 .typo-logo {
   padding-left: 150px; 
-  margin: 0;
+  margin-bottom: 100px;
   box-sizing: border-box;
 }
 
@@ -503,14 +503,14 @@
 }
 
 .logo-small2 {
-  margin-top: -150px;
-  margin-bottom: 2vh;
+  margin-top: -185px;
+  margin-bottom: 2.5vh;
 }
 
 /* 전경 이미지 (typo5, typo6, typo7) */
 .logo-small > img,
 .logo-small2 > img {
-  width: 33%;
+  width: 32%;
   height: auto;
   object-fit: contain;
   z-index: 2;
@@ -522,7 +522,7 @@
    ======================= */
 .blind-wrap {
   position: absolute;
-  width: 33%;
+  width: 32%;
   overflow: hidden;
   height: 0; /* 처음 완전 가려짐 */
   transition: height 4s cubic-bezier(.22,.82,.26,1);
@@ -586,6 +586,7 @@
   font-size: 33px;
   font-weight: 400;
   color: #484848;
+    letter-spacing: -0.04em;
 }
 
 .typo-para2 p {
@@ -594,6 +595,7 @@
   font-weight: 300;
   line-height: 1.3;
   color: #484848;
+  letter-spacing: -0.03em;
 }
 
 /* =======================

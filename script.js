@@ -521,27 +521,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// =========================
-// 🔹 SCALE (2560x1440 기준 축소)
-// =========================
-function applyScale() {
-  const baseW = 2560;
-  const baseH = 1440;
+// 섹션 테마에 따라 헤더 색 바꾸기
+const header = document.querySelector(".header");
+const themedSections = document.querySelectorAll("[data-section]");
 
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+const headerObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
 
-  const scaleW = vw / baseW;
-  const scaleH = vh / baseH;
-  const scale = Math.min(scaleW, scaleH);
+      const isLight = entry.target.classList.contains("section-light");
+      if (isLight) {
+        header.classList.add("header--light");
+      } else {
+        header.classList.remove("header--light");
+      }
+    });
+  },
+  {
+    threshold: 0.3, // 섹션이 30% 정도 보일 때 전환
+  }
+);
 
-  const wrap = document.getElementById('scale-wrap');
-  if (!wrap) return;
-
-  wrap.style.transform = `scale(${scale})`;
-  wrap.style.width = baseW + 'px';
-  wrap.style.height = baseH + 'px';
-}
-
-window.addEventListener('load', applyScale);
-window.addEventListener('resize', applyScale);
+themedSections.forEach((sec) => headerObserver.observe(sec));

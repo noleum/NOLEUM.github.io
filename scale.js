@@ -1,23 +1,20 @@
-function applyScale() {
-  const baseW = 2560;
-  const baseH = 1440;
+function applyViewportScale() {
+  const designWidth = 2710;      // 실제 전체 디자인 폭
+  const visibleWidth = 2560;     // 보여줄 기준 폭
 
-  const vw = window.innerWidth;
-  const vh = window.innerHeight;
+  const windowWidth = window.innerWidth;
 
-  // 가로/세로 중 작은 비율로 페이지 전체 축소
-  const scaleW = vw / baseW;
-  const scaleH = vh / baseH;
-  const scale = Math.min(scaleW, scaleH);
+  // 2560 기준 스케일 계산
+  const scale = windowWidth / visibleWidth;
 
   const wrap = document.getElementById("scale-wrap");
-  wrap.style.transform = `scale(${scale})`;
 
-  // transform은 실제 요소 크기를 줄이지 않으므로,
-  // 스케일 후에도 스크롤 생기게 전체 크기 보정
-  wrap.style.width = baseW + "px";
-  wrap.style.height = baseH + "px";
+  wrap.style.transform = `scale(${scale})`;
+  wrap.style.transformOrigin = "top left";
+
+  // 🔥 왼쪽이 너무 잘리니까 오른쪽으로 75px 이동
+  wrap.style.left = "0px";
 }
 
-window.addEventListener("load", applyScale);
-window.addEventListener("resize", applyScale);
+window.addEventListener("load", applyViewportScale);
+window.addEventListener("resize", applyViewportScale);

@@ -66,7 +66,7 @@ body {
 .planning-overview2 {
   max-width: 900px;  
   margin: 0 auto;   
-  padding-top: 10vh;
+  padding-top: 30vh;
   color: #fff;
 }
 
@@ -116,7 +116,7 @@ body {
     to bottom,
     #AB371E 1%,
     #792D1C 15%, 
-    #5e281c 30%, 
+    #5e281c 25%, 
     #251917 55%,
     #181818 80%
   );
@@ -162,7 +162,7 @@ body.orbits-hover .orbit-tag {
    문양 + 오렌지 원
    ========================= */
 .planning-orbits {
-  margin-top: 90px;
+  margin-top: 80px;
   /* display: flex;              기존 플렉스 제거 */
   /* justify-content: center;    → 텍스트 중앙 정렬로 대체 */
   /* gap: 0; */
@@ -180,7 +180,7 @@ body.orbits-hover .orbit-tag {
 
 /* 문양 박스: 1920 기준 적당히 보이게 */
 .orbit {
-  width: min(22vw, 400px); /* 1920에서 대략 360px 근처 */
+  width: min(27vw, 450px); /* 1920에서 대략 360px 근처 */
   aspect-ratio: 1 / 1;
   position: relative;
   display: inline-flex;       /* flex → inline-flex로 변경 */
@@ -254,7 +254,7 @@ height: 100%;
   transform: scale(0.8);
   transition:
     opacity 0.7s cubic-bezier(.22,.82,.26,1),
-    transform 0.45s cubic-bezier(.22,.82,.26,1);
+    transform 0.25s cubic-bezier(.22,.82,.26,1);
 }
 
 .orbit-tag {
@@ -264,6 +264,7 @@ height: 100%;
   margin-top: 25px;
   font-weight: 100;
   letter-spacing: 0.12em;
+  margin-bottom: 250px;
 }
 
 .orbit-k {
@@ -370,6 +371,7 @@ height: 100%;
 /* 메인 제목 */
 .ph-title2 {
   font-size: 38px;
+  font-weight: 400;
   line-height: 1.3;
   margin: 0 0 18px;
   text-align: left;
@@ -451,8 +453,8 @@ height: 100%;
   height: auto;
   background: #181818;
   box-sizing: border-box;
-  padding-top: 20vh;
-  padding-bottom: 24vh;
+  padding-top: 35vh;
+  padding-bottom: 40vh;
 
 
 }
@@ -466,13 +468,13 @@ height: 100%;
 .ps-kicker2 {
   font-size: 22px;
   color: #EA4521;
-  margin-bottom: 10px;
+  margin-bottom: -25px;
   font-weight: 400;
 }
 
 .ps-left h2 {
   font-size: 38px;
-  font-weight: 500;
+  font-weight: 400;
   margin-bottom: 14px;
   line-height: 1.25;
 }
@@ -659,7 +661,7 @@ height: 100%;
   height: auto;
 
   padding-top: 3vh;
-  padding-bottom: 25vh;
+  padding-bottom: 40vh;
   background: #181818;
   color: #ffffff;
 
@@ -681,7 +683,7 @@ height: 100%;
   color: #EA4521;
 }
 .ph-title3 {
-  margin: 0 0 18px;
+  margin: 0 0 22px;
   font-size: 38px;
   font-weight: 400;
   line-height: 1.3;
@@ -691,7 +693,7 @@ height: 100%;
 .ph-desc3 {
   margin: 0;
   color: #bababa;
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 300;
   line-height: 1.4;
   letter-spacing: -0.02em;
@@ -719,7 +721,7 @@ height: 100%;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 18px 38px;
+  padding: 20px 41px;
   font-size: 25px;
   font-weight: 400;
   line-height: 1;
@@ -781,7 +783,7 @@ height: 100%;
 
   display: flex;
   flex-direction: column;
-  row-gap: 80px;           /* 줄 간 간격 */
+  row-gap: 65px;           /* 줄 간 간격 */
 }
 
 /* 현재 선택된 세트 */
@@ -793,29 +795,48 @@ height: 100%;
 /* 한 줄(row) */
 .venn-row {
   display: flex;
-  column-gap: 165px;        /* 단어 사이 간격 */
+  column-gap: 158px;        /* 단어 사이 간격 */
 }
 
 /* 단어 기본 스타일 */
 .venn-word {
-  font-size: 90px;          /* 🔸 숫자 그대로 */
+  position: relative;              /* 🔥 배경용 ::before를 위해 추가 */
+  font-size: 90px;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 300;
-  white-space: nowrap;      /* 단어 안에서 줄바꿈 안 되게 */
-  letter-spacing: -0.06em;
+  white-space: nowrap;
+  letter-spacing: -0.04em;
 }
 
-/* 강조 단어 (클릭 이후) */
+/* strong 기본: 처음에는 일반 단어와 완전히 동일 (배경 없음) */
 .venn-word.is-strong {
-  color: #ffffff;
-  font-weight: 400;
+  /* 여기서는 아무 스타일도 추가하지 않음 */
 }
 
-/* 🔹 처음 로드 상태(pre-venn)에서는 strong도 얇게 보이게 */
+/* 토글 전 상태: body에 pre-venn 있을 때 → 흐리게 유지 */
 body.pre-venn .venn-word.is-strong {
+  /* 필요하면 살짝만 다르게 줄 수도 있지만,
+     지금은 일반 단어랑 똑같이 두는 게 깔끔함 */
   color: rgba(255, 255, 255, 0.4);
   font-weight: 300;
 }
+
+/* 🔥 토글 후: body에서 pre-venn 클래스가 빠지면 강조 모드 */
+body:not(.pre-venn) .venn-word.is-strong {
+  color: #EA4521;
+  font-weight: 500;
+}
+
+/* 🔥 배경은 ::before로 그려서 줄 높이가 안 변하게 */
+body:not(.pre-venn) .venn-word.is-strong::before {
+  content: "";
+  position: absolute;
+  inset: -20px -60px;  /* 배경 크기 (위아래 / 좌우 여유) */
+  background-color: #ffffff;
+  border-radius: 999px;
+  z-index: -1;         /* 글자 뒤로 보내기 */
+}
+
 
 /* ============================
    줄(row) 전체에 좌우 오프셋
@@ -845,7 +866,7 @@ body.pre-venn .venn-word.is-strong {
 .ph-text-section {
   width: 100%;
   background: #f5f5f5;
-  padding-top: 150px;
+  padding-top: 230px;
 }
 
 .ph-container {
@@ -875,11 +896,12 @@ body.pre-venn .venn-word.is-strong {
 }
 .ph-desc {
   margin: 0;
-  color: #898989;
+  color: #000000;
   font-size: 28px;
   font-weight: 300;
   line-height: 1.4;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
+  opacity: 0.5;
 }
 
 .ph-visual-section {
@@ -895,7 +917,7 @@ body.pre-venn .venn-word.is-strong {
   position: relative;
   width: 100%;
   margin: 0 auto;
-  min-height: 1100px;
+  min-height: 1400px;
 }
 
 
@@ -1001,6 +1023,7 @@ body.pre-venn .venn-word.is-strong {
   position: relative; 
   width: 100%; 
   display: block; 
+  margin: 0;
 }
 
 .p-bg2__img { 
@@ -1011,7 +1034,7 @@ body.pre-venn .venn-word.is-strong {
 
 .p-bg2__text {
   position: absolute;
-  top: 150px;
+  top: 100px;
   left:150px; 
   color: #000;
   max-width: 100%;
@@ -1020,7 +1043,8 @@ body.pre-venn .venn-word.is-strong {
   font-size: 50px;
   margin: 0;
   line-height: 1.25;
-  font-weight: 700;
+  font-weight: 500;
+  letter-spacing: -0.05em;
 }
 .p-bg2__text .accent { color: var(--accent); }
 .p-bg2__text p {
@@ -1029,6 +1053,7 @@ body.pre-venn .venn-word.is-strong {
   font-size: 28px;
   color: rgba(0,0,0,0.8);
   font-weight: 300;
+  letter-spacing: -0.03em;
 }
 
 @media (max-width: 900px) {

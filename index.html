@@ -17,14 +17,14 @@
   <header class="header" role="banner">
     <div class="logo" aria-label="한글버전">ㅎㄱ</div>
     <nav aria-label="섹션 내비게이션">
-      <a class="nav__link" href="#promoVideo">홍보영상</a> 
+      <a class="nav__link" href="#video-section">홍보영상</a> 
       <a class="nav__link" href="#planning">기획</a>
       <a class="nav__link" href="#design">디자인</a>
       <a class="nav__link" href="#process">작업 과정</a>
       <a class="nav__link" href="#introduction">팀소개</a>
     </nav>
   </header> <!-- /header -->
-
+<div id="viewport-mask">
   <div id="scale-wrap">
 
 <main>
@@ -337,7 +337,7 @@
 
 
 <!-- ░░░ PLANNING : TEXT SECTION (위쪽) ░░░ -->
-<section class="ph-text-section" data-section class="section-light">
+<section class="ph-text-section section-light" data-section>
   <div class="ph-container reveal-text">
     <div class="ph-text">
       <p class="ph-kicker">해결책</p>
@@ -345,7 +345,6 @@
         전통문화의 새로운 경험 방식을 제안하다<br>
         몸으로 느끼고 참여하는 몰입형 체험을 선보입니다
       </h2>
-
       <p class="ph-desc">
         기존의 한계를 넘어, 전통문화를 단순히 '보는 것'이 아닌
         직접 참여하고 느낄 수 있는 몰입형 체험 콘텐츠로 재해석했습니다.
@@ -354,38 +353,36 @@
       </p>
     </div>
   </div>
-<!-- /section.ph-text-section (열림 유지, 아래에서 닫힘) -->
+</section><!-- /ph-text-section -->
 
-  
-<!-- ░░░ PLANNING : VISUAL SECTION (아래쪽 - 배경 이미지 + 도형들) ░░░ -->
-<section class="ph-visual-section" aria-hidden="true">
+
+<!-- ░░░ PLANNING : VISUAL SECTION (아래쪽) ※ 여기는 light/dark 아님 ░░░ -->
+<section class="ph-visual-section">
   <div class="ph-visual-inner ph-container">
-
-    <!-- 🔹 Background image (핑크 타이포) -->
     <div class="ph-visual-bg">
       <img src="img/p_bg1.png" alt="Decorative planning background"/>
     </div>
 
-    <!-- 🔹 Pills (도형) -->
     <div class="ph-shapes">
       <div class="ph-pill ph-pill--a">전통문화의 디지털화</div>
       <div class="ph-pill ph-pill--b">현대적 재해석</div>
       <div class="ph-pill ph-pill--c">관람자 참여 중심</div>
     </div>
-
   </div>
-</section> <!-- /.ph-visual-section -->
+</section><!-- /.ph-visual-section -->
 
-<section class="p-bg2--img" data-section class="section-light">
+
+<!-- ░░░ PLANNING : BG IMAGE SECTION ░░░ -->
+<section class="p-bg2--img section-light" data-section>
   <img src="img/p_bg2.png" alt="decorative bg" class="p-bg2__img">
   <div class="p-bg2__text reveal-text">
-    <h2>"<span class="accent">키넥트</span>와 <span class="accent">미디어월</span>
-      을 활용해 전통문화 체험의 <span class="accent">한계점을 극복</span>"</h2>
+    <h2>
+      "<span class="accent">키넥트</span>와 <span class="accent">미디어월</span>을 활용해 전통문화 체험의 <span class="accent">한계점을 극복</span>"
+    </h2>
     <p>한국 전통놀이를 몰입감 있게 즐길 수 있는 인터랙티브 콘텐츠 제작</p>
   </div>
+</section><!-- /.p-bg2--img -->
 
-</section> <!-- /.p-bg2--img -->
-</section> <!-- /section.ph-text-section (위쪽 텍스트 섹션 닫힘) -->
 
     <!-- DESIGN -->
     <section id="design" data-section data-section class="section-dark">
@@ -924,6 +921,7 @@
   </div>
 </footer>
 
+</div> 
 </div>
 
   <script src="script.js" defer></script>
