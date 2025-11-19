@@ -433,11 +433,20 @@ height: 100%;
   margin-top: 130px;
   letter-spacing: -0.03em;
 }
+
+.info-box.box-left .box-deco {
+  position: absolute;
+  top: -90px;
+  right: -75px;
+  width: 275px;
+  pointer-events: none;
+}
+
 .info-box .box-deco {
   position: absolute;
-  top: -75px;
-  right: -45px;
-  width: 290px;
+  top: -90px;
+  right: -75px;
+  width: 285px;
   pointer-events: none;
 }
 
