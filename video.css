@@ -1,13 +1,18 @@
+/* =========================
+   VIDEO SECTION
+   ========================= */
+
 /* 페이지 기본 */
-html, body {  
-  padding:0; 
+html,
+body {
+  padding: 0;
   overflow-x: hidden;
 }
 
 .v-text {
-  margin-left: 0;
+  padding-left: 150px;
   margin-right: 0;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 
 .v-p {
@@ -19,22 +24,20 @@ html, body {
   letter-spacing: -0.04em;
 }
 
-/* 섹션: 풀폭 + 좌우 패딩 + 바닥 그라디언트 */
-#video-section { 
+/* 섹션: 풀폭 + 바닥 그라디언트 */
+#video-section {
   position: relative;
   width: 100%;
-  background:#181818;
+  background: #181818;
 
-  /* 🔥 이제 margin이 아니라 padding으로 여백 만들기 */
   margin: 0;
-  padding-left: 150px; 
-  padding-right: 150px; 
+  padding: 0;
   padding-bottom: 40px; /* 밑에 살짝 여유 */
 
   overflow: hidden;
 }
 
-/* 섹션 바닥에서 위로 500px 만큼 #EA4521 그라디언트 */
+/* 섹션 바닥에서 위로 올라오는 그라디언트 */
 #video-section::after {
   content: "";
   position: absolute;
@@ -47,7 +50,7 @@ html, body {
     to top,
     #AB371E 0%,
     #AB371E 5%,
-    #792D1C 25%,    
+    #792D1C 25%,
     #181818 60%
   );
 
@@ -55,22 +58,124 @@ html, body {
   z-index: 0;
 }
 
-/* 안쪽 컨테이너 (텍스트 + 영상) */
+/* 안쪽 컨테이너 (영상 + 커스텀 컨트롤) */
 .video_inner {
-  position: relative;   /* 그라디언트 위로 올라오게 */
+  position: relative;   /* 컨트롤바 overlay용 */
   width: 100%;
   margin-top: 16px;
   overflow: hidden;
-  border-radius: 36px;
   z-index: 1;
 }
 
-/* 영상은 가운데 / 가로 100% (패딩 안쪽 기준) */
+/* 영상 */
 .video_inner video {
-  display:block;
-  width: 100%; 
+  display: block;       
+  width: 100%;
   height: auto;
   object-fit: cover;
   object-position: center;
-  background:#000;
+  background: #181818;
+  z-index: 1;
+}
+
+/* 커스텀 컨트롤바 */
+.custom-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 16px;
+
+  transform: translateY(0);
+  pointer-events: auto;
+  opacity: 0.9;
+
+  z-index: 2;
+}
+
+/* 버튼 (재생/일시정지, 음소거) */
+.custom-controls button {
+  background: none;
+  border: none;
+  color: #ffffff;     /* 버튼 아이콘 흰색 */
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+/* 공통 슬라이더 기본 리셋 */
+.custom-controls input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* ========== Chrome / Safari / Edge ========== */
+
+/* 트랙 (슬라이더 전체 라인) */
+.custom-controls input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255,255,255,0.25); /* 연한 라인 */
+  border-radius: 999px;
+}
+
+/* 동그라미(thumb) */
+.custom-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #EA4521;   /* 🔥 동그라미 색 */
+  border-radius: 50%;
+  margin-top: -6px;      /* 트랙 중앙 정렬용 */
+}
+
+/* ========== Firefox ========== */
+
+.custom-controls input[type="range"]::-moz-range-track {
+  height: 4px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 999px;
+}
+
+.custom-controls input[type="range"]::-moz-range-progress {
+  height: 4px;
+  background: #EA4521;   /* 🔥 진행된 부분 색 */
+  border-radius: 999px;
+}
+
+.custom-controls input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #EA4521;   /* 🔥 동그라미 색 */
+  border-radius: 50%;
+  border: none;
+}
+
+/* ========== (선택) Edge/IE old 스타일 방지용 ========== */
+.custom-controls input[type="range"]::-ms-track {
+  height: 4px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.custom-controls input[type="range"]::-ms-fill-lower {
+  background: #EA4521;
+}
+.custom-controls input[type="range"]::-ms-fill-upper {
+  background: rgba(255,255,255,0.25);
+}
+.custom-controls input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: #EA4521;
+  border-radius: 50%;
+  border: none;
 }

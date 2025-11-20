@@ -12,8 +12,14 @@
   <link rel="stylesheet" href="process.css">
   <link rel="stylesheet" href="video.css">
   <link rel="stylesheet" href="introduction.css">
+  <link rel="stylesheet" href="audio.css">
 </head>
 <body>
+<audio id="bgmAudio" src="audio/빛의 세상으로 가야금ver.mp3" loop preload="auto"></audio>
+<button id="bgmToggle" class="bgm-toggle" aria-label="배경 음악 끄기" aria-pressed="true">
+  🔊
+</button>
+
   <header class="header" role="banner">
     <div
       class="logo lang-toggle"
@@ -24,7 +30,7 @@
       EN
     </div>
     <nav aria-label="섹션 내비게이션">
-      <a class="nav__link" href="#video-section">
+      <a class="nav__link" href="#promoVideo">
         <span class="lang-ko">홍보영상</span><span class="lang-en">VIDEO</span>
       </a> 
       <a class="nav__link" href="#planning">
@@ -64,17 +70,21 @@
         <span class="lang-ko">홍보영상</span><span class="lang-en">VIDEO</span>
       </h2>
     </div>
-    <div class="video_inner">
-      <video id="promoVideo" muted loop playsinline preload="auto" controls>
-        <source
-          src="https://pub-f68e6cc94ffd4217a4565ccbd917ccb9.r2.dev/video.mp4"
-          type="video/mp4"
-        />
-      </video>
+<div class="video_inner">
+  <video id="promoVideo" muted loop playsinline preload="auto">
+    <source
+      src="https://pub-f68e6cc94ffd4217a4565ccbd917ccb9.r2.dev/video.mp4"
+      type="video/mp4"
+    />
+  </video>
 
+  <div id="promoControls" class="custom-controls">
+    <button id="playBtn">▶︎</button>
+    <input type="range" id="progressBar" value="0" min="0" max="100">
+    <button id="muteBtn">🔇</button>
+  </div>
+</div>
 
-      </video>
-    </div>
   </section> <!-- /#video-section -->
 
   <!-- ======================
@@ -1139,5 +1149,6 @@
   <script src="grid-dev.js"></script>
   <script src="videoscript.js"></script>
   <script src="scale.js"></script>
+  <script src="audio.js"></script>
 </body>
 </html>
