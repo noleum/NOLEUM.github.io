@@ -103,9 +103,9 @@ body {
   background: none;
   border: none;
   color: #ffffff;     /* 버튼 아이콘 흰색 */
-  font-size: 22px;
+  font-size: 30px;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 /* 공통 슬라이더 기본 리셋 */
