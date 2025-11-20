@@ -759,6 +759,13 @@ html[data-lang="en"] .ps-left p {
   margin-top: 18px;
 }
 
+html[data-lang="en"] .venn-panel {
+  width: 100%;
+  margin-top: 18px;
+  padding-top: 40px;
+}
+
+
 .venn-panel-inner {
   margin: 0;
 }
@@ -778,6 +785,7 @@ html[data-lang="en"] .ps-left p {
   transform: translateY(40px);   /* ✅ X축 이동 제거 */
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
 
 .venn-box.is-active {
   opacity: 1;
@@ -815,12 +823,27 @@ html[data-lang="en"] .ps-left p {
   column-gap: 158px;        /* 단어 사이 간격 */
 }
 
+/* 한 줄(row) */
+html[data-lang="en"] .venn-row {
+  display: flex;
+  column-gap: 135px;        /* 단어 사이 간격 */
+}
+
 /* 단어 기본 스타일 */
 .venn-word {
   position: relative;              /* 🔥 배경용 ::before를 위해 추가 */
   font-size: 90px;
   color: rgba(255, 255, 255, 0.4);
   font-weight: 300;
+  white-space: nowrap;
+  letter-spacing: -0.04em;
+}
+
+html[data-lang="en"] .venn-word {
+  position: relative;              /* 🔥 배경용 ::before를 위해 추가 */
+  font-size: 70px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
   white-space: nowrap;
   letter-spacing: -0.04em;
 }
@@ -835,7 +858,7 @@ body.pre-venn .venn-word.is-strong {
   /* 필요하면 살짝만 다르게 줄 수도 있지만,
      지금은 일반 단어랑 똑같이 두는 게 깔끔함 */
   color: rgba(255, 255, 255, 0.4);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* 🔥 토글 후: body에서 pre-venn 클래스가 빠지면 강조 모드 */

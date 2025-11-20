@@ -562,10 +562,10 @@ themedSections.forEach((sec) => headerObserver.observe(sec));
   function updateToggleLabel() {
     const lang = html.getAttribute("data-lang");
     if (lang === "ko") {
-      toggle.textContent = "한";
+      toggle.textContent = "EN";
       toggle.setAttribute("aria-label", "현재 한국어, 클릭 시 English");
     } else {
-      toggle.textContent = "EN";
+      toggle.textContent = "한글";
       toggle.setAttribute("aria-label", "Current English, click for Korean");
     }
   }
