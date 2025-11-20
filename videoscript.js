@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const FADE_DURATION = 1000; // ✅ 1초 페이드 (밀리초)
+  const FADE_DURATION = 1500; // ✅ 1.5초 페이드 (밀리초)
 
   // ============================
   // 🔊 볼륨 페이드 함수
@@ -59,9 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }
         } else {
-          // 뷰포트를 벗어났을 때 정지
+          // 뷰포트를 벗어났을 때 정지 (🔊 1.5초 페이드 아웃 후 pause)
           if (!video.paused) {
-            video.pause();
+            // 소리가 실제로 나고 있을 때만 페이드 아웃
+            if (!video.muted && video.volume > 0.05) {
+              fadeVideoVolume(0, FADE_DURATION, () => {
+                video.pause();
+              });
+            } else {
+              // 이미 음소거 상태거나 거의 0이면 그냥 바로 멈춤
+              video.pause();
+            }
           }
         }
       });
@@ -96,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* 🔇 음소거 / 🔊 해제 (1초 페이드 인/아웃) */
+  /* 🔇 음소거 / 🔊 해제 (1.5초 페이드 인/아웃) */
   muteBtn.addEventListener('click', () => {
     // 현재가 "꺼진 상태"라고 판단: muted 이거나, 볼륨이 0에 가까움
     const isCurrentlyMuted = video.muted || video.volume < 0.05;
@@ -130,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 📌 최초 자동재생 시도 + 소리 ON 유도 (영상 위 첫 클릭 시 페이드 인)
+  // 📌 최초 자동재생 시도 + 소리 ON 유도 (영상 위 첫 클릭 시 1.5초 페이드 인)
   video.play().catch(() => {
     // 첫 클릭에서 소리 On — 단, 영상 위에서만 작동
     video.addEventListener(
